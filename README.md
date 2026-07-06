@@ -1,8 +1,10 @@
 # Equity Research Hub
 
-A small React/Vite frontend for tracking public-equity research ideas, catalysts, source posture, and next-evidence work.
+A small React/Vite frontend for publishing public-equity research reports and tracking follow-up ideas.
 
 The first seeded workspace is based on a July 6, 2026 idea triage covering TSLA, SPCX, AMD, NVDA, AVGO, and RKLB.
+
+The production root redirects to the published report at `/equity_idea_triage_2026-07-06.html`. The interactive research workspace remains available at `/hub`.
 
 ## Scripts
 

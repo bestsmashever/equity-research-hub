@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   BarChart3,
   CalendarDays,
@@ -216,7 +216,7 @@ const priorityLabel: Record<Priority, string> = {
   C: 'C - Screen flag',
 }
 
-function App() {
+function ResearchHub() {
   const [selectedTicker, setSelectedTicker] = useState('AMD')
   const [priorityFilter, setPriorityFilter] = useState<'All' | Priority>('All')
   const [query, setQuery] = useState('')
@@ -511,6 +511,26 @@ function App() {
           </aside>
         </main>
       </div>
+    </div>
+  )
+}
+
+function App() {
+  const isHubRoute = window.location.pathname === '/hub'
+
+  useEffect(() => {
+    if (!isHubRoute) {
+      window.location.replace('/equity_idea_triage_2026-07-06.html')
+    }
+  }, [isHubRoute])
+
+  if (isHubRoute) {
+    return <ResearchHub />
+  }
+
+  return (
+    <div className="report-redirect">
+      <a href="/equity_idea_triage_2026-07-06.html">Open equity idea triage report</a>
     </div>
   )
 }

@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TSLA / SPCX / AMD 股票机会初筛 - 2026-07-06</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5b6775;
+      --line: #d8dee6;
+      --paper: #fbfcfd;
+      --white: #ffffff;
+      --teal: #157a7f;
+      --green: #27724a;
+      --gold: #a66b00;
+      --red: #a33a37;
+      --blue: #2c5aa0;
+      --slate: #303846;
+      --soft-teal: #e7f4f4;
+      --soft-green: #eaf5ee;
+      --soft-gold: #fff3d8;
+      --soft-red: #fdebea;
+      --soft-blue: #ecf2fb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.48;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1180px, calc(100vw - 36px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 0 0 22px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.06;
+      letter-spacing: 0;
+      margin: 0 0 12px;
+      max-width: 920px;
+    }
+
+    .subtitle {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--slate);
+      font-weight: 650;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .tiles {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 22px;
+    }
+
+    .tile {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px;
+      min-height: 136px;
+    }
+
+    .tile .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tile .value {
+      font-size: 24px;
+      font-weight: 790;
+      line-height: 1.12;
+      margin-bottom: 8px;
+    }
+
+    .tile p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding-top: 2px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    .thesis {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .thesis h2 { color: #fff; }
+    .thesis p { margin: 0; color: #eef3f7; max-width: 970px; }
+
+    .matrix-wrap {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .matrix {
+      position: relative;
+      height: 330px;
+      border-left: 2px solid var(--slate);
+      border-bottom: 2px solid var(--slate);
+      background:
+        linear-gradient(to right, transparent 49.7%, #e6eaf0 50%, transparent 50.3%),
+        linear-gradient(to top, transparent 49.7%, #e6eaf0 50%, transparent 50.3%);
+      margin: 10px 8px 34px 18px;
+    }
+
+    .axis-x, .axis-y {
+      position: absolute;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .axis-x { left: 36%; bottom: -30px; }
+    .axis-y {
+      transform: rotate(-90deg);
+      left: -96px;
+      top: 44%;
+    }
+
+    .point {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.18);
+    }
+
+    .point span {
+      position: absolute;
+      left: 15px;
+      top: -6px;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink);
+      background: rgba(255,255,255,.88);
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    .point.amd { left: 72%; bottom: 71%; background: var(--green); }
+    .point.tsla { left: 53%; bottom: 86%; background: var(--gold); }
+    .point.spcx { left: 76%; bottom: 91%; background: var(--red); }
+    .point.nvda { left: 88%; bottom: 72%; background: var(--blue); }
+    .point.avgo { left: 75%; bottom: 55%; background: var(--teal); }
+    .point.rklb { left: 36%; bottom: 87%; background: var(--slate); }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .legend span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: #fff;
+    }
+
+    .board {
+      overflow-x: auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    th, td {
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--slate);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+      background: #f4f7fa;
+      position: sticky;
+      top: 0;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .ticker {
+      font-weight: 850;
+      font-size: 15px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .bucket {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 6px;
+    }
+
+    .a { color: var(--green); background: var(--soft-green); }
+    .b { color: var(--gold); background: var(--soft-gold); }
+    .c { color: var(--slate); background: #eef1f4; }
+    .reject { color: var(--red); background: var(--soft-red); }
+
+    .cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .card li { margin-bottom: 6px; }
+
+    .bars {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr) 86px;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+
+    .bar-track {
+      height: 12px;
+      background: #edf1f5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 999px;
+    }
+
+    .calendar {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .event {
+      background: var(--white);
+      border-left: 4px solid var(--teal);
+      border-radius: 8px;
+      padding: 14px;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .date {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .event p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .note {
+      border: 1px solid var(--line);
+      background: var(--soft-blue);
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--slate);
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .sources {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .sources ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sources li { margin-bottom: 8px; }
+
+    .small { font-size: 12px; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .tiles, .cards, .calendar { grid-template-columns: 1fr 1fr; }
+      .matrix { height: 300px; }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: min(100vw - 24px, 1180px); padding-top: 22px; }
+      .tiles, .cards, .calendar { grid-template-columns: 1fr; }
+      .matrix-wrap { padding: 12px; }
+      .matrix { margin-left: 10px; height: 270px; }
+      .axis-y { display: none; }
+      .point span { font-size: 11px; }
+      .tile { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="eyebrow">Public equity idea generation</div>
+      <h1>TSLA / SPCX / AMD 股票机会初筛</h1>
+      <p class="subtitle">研究优先级结论，不是最终买卖建议。当前资料以公开市场数据、公司 IR、SEC S-1 和公司公告为主；没有使用私有研究、组合持仓或券商模型。</p>
+      <div class="meta">
+        <span class="pill">As of 2026-07-06 market close / intraday sources</span>
+        <span class="pill">Horizon: 6-18 months</span>
+        <span class="pill">Universe: US large/liquid growth + space/AI adjacencies</span>
+        <span class="pill">Output: idea triage, not recommendation</span>
+      </div>
+    </header>
+
+    <section class="thesis">
+      <h2>结论先行</h2>
+      <p><strong>AMD 是这组里最值得立刻深挖的研究候选，</strong>因为数据中心收入、客户背书和接下来 7 月 AI 活动 / Q2 打印之间有清楚的证据路径；但它已经大幅重估，真正的买点需要“订单与毛利继续上修”而不只是 AI 主题。<strong>SpaceX / SPCX 的业务质量和可选性最强，但估值和 IPO 后技术面最极端，</strong>更适合等第一份季报、指数买入和锁定期供给冲击走完后再定价。<strong>TSLA 是事件驱动 watchlist，</strong>Q2 交付很好看，但股价已把 robotaxi/FSD/Optimus 预期打得很满，7 月 22 日 Q2 毛利和现金流比交付数量更关键。</p>
+    </section>
+
+    <section class="grid tiles">
+      <div class="tile">
+        <div class="label">Advance to deeper work</div>
+        <div class="value">AMD</div>
+        <p>基本面证据最清晰：Q1 收入 +38% YoY，Data Center +57% YoY，Q2 指引继续加速。</p>
+      </div>
+      <div class="tile">
+        <div class="label">Valuation / flow gated</div>
+        <div class="value">SPCX</div>
+        <p>Starlink/Connectivity 经济性强，但 $2T+ 市值约 111x 2025 revenue，IPO 后供需因素很重。</p>
+      </div>
+      <div class="tile">
+        <div class="label">Needs trigger</div>
+        <div class="value">TSLA</div>
+        <p>Q2 交付 480k 是硬催化，但下一步要看 ASP、auto gross margin、FSD/robotaxi 付费证据。</p>
+      </div>
+      <div class="tile">
+        <div class="label">Benchmark / compare</div>
+        <div class="value">NVDA / AVGO / RKLB</div>
+        <p>NVDA/AVGO 是 AI 估值与执行标尺；RKLB 是太空 beta，但不是 SpaceX 替代品。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Exposure Proof vs. Expectations Risk</h2>
+      <div class="matrix-wrap">
+        <div class="matrix" aria-label="Exposure proof versus expectations risk matrix">
+          <div class="axis-y">Expectations risk higher</div>
+          <div class="axis-x">Exposure proof stronger</div>
+          <div class="point amd"><span>AMD</span></div>
+          <div class="point tsla"><span>TSLA</span></div>
+          <div class="point spcx"><span>SPCX</span></div>
+          <div class="point nvda"><span>NVDA</span></div>
+          <div class="point avgo"><span>AVGO</span></div>
+          <div class="point rklb"><span>RKLB</span></div>
+        </div>
+        <div class="legend">
+          <span>右上：强证据但估值/预期更重</span>
+          <span>右下：更理想的“证据强、预期低”区域，目前这组里没有明显落点</span>
+          <span>左上：主题热但需要更多收入/利润归因</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>候选股票看板</h2>
+      <div class="board">
+        <table>
+          <thead>
+            <tr>
+              <th>股票</th>
+              <th>当前锚点</th>
+              <th>为什么现在</th>
+              <th>Variant Wedge</th>
+              <th>已计价内容</th>
+              <th>第一否决条件</th>
+              <th>下一步</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="ticker">AMD</div><span class="bucket a">A - 深挖候选</span></td>
+              <td>$552.05 close; ~$900B mkt cap; P/E ~181x. 粗略 annualized Q1 sales multiple ~22x。</td>
+              <td>Q1 2026 revenue $10.3B, +38% YoY；Data Center 成为主增长引擎；Q2 指引 $11.2B +/- $300M，midpoint +46% YoY。</td>
+              <td>市场可能仍低估 AMD 在 hyperscaler 多供应商化、MI450/Helios、EPYC server CPU 中的份额提升，而不是只把它当“second-source GPU”。</td>
+              <td>AI accelerator 和 server CPU 加速已经被大幅折现；Google Finance 显示股价接近 52 周高点，平均卖方目标价低于当前价。</td>
+              <td>如果 Q2/Q3 Data Center 增长不能证明 MI/EPYC 订单兑现，或毛利率被供给/客户 mix 压住，估值会先压缩。</td>
+              <td>做 mini model：Data Center revenue、gross margin、2027 AI revenue sensitivity；跟进 2026-07-22/23 Advancing AI。</td>
+            </tr>
+            <tr>
+              <td><div class="ticker">TSLA</div><span class="bucket b">B - 等触发</span></td>
+              <td>$416.06 intraday / ~$1.32T mkt cap; P/E ~384x. 粗略 annualized Q1 sales multiple ~15x。</td>
+              <td>Q2 deliveries 480,126 and storage deployments 13.5 GWh；Q2 financials scheduled for 2026-07-22。</td>
+              <td>如果 robotaxi/FSD 从“叙事资产”变成可观察付费 adoption + unit economics，TSLA 可从 auto multiple 转向 autonomy/robotics option。</td>
+              <td>当前价格已经不是传统车企估值；市场在支付 FSD、robotaxi、Optimus、energy storage 和 AI compute 的组合期权。</td>
+              <td>Q2 交付强但 ASP/auto gross margin/FCF 弱，或监管/安全问题拖慢 robotaxi 扩张，会把故事拉回低利润汽车周期。</td>
+              <td>等 Q2：auto gross margin ex credits、FSD paid attach/subscription、robotaxi operating footprint、energy storage margin。</td>
+            </tr>
+            <tr>
+              <td><div class="ticker">SPCX</div><span class="bucket b">B - 估值/流动性门槛</span></td>
+              <td>$157.04 at 3:43pm ET; ~$2.07T mkt cap; 52-wk range $147.11-$225.64。粗略 mkt cap / 2025 revenue ~111x。</td>
+              <td>6 月 IPO、7 月 Nasdaq-100 inclusion、第一份公开季报预期窗口临近。Starlink/Connectivity 是明确利润池。</td>
+              <td>SpaceX 不是单纯 launch company；S-1 显示它已经是 Connectivity + AI infrastructure + launch 的复合平台，Connectivity 2025 Segment Adj. EBITDA $7.2B。</td>
+              <td>IPO 后 $2T+ 市值已经把 Starlink、高复用火箭、AI/space compute 的远期期权前置折现。指数买入也是短期 flow，不是基本面。</td>
+              <td>如果第一份季报显示 AI segment cash burn 加速、Starlink ARPU/净增用户转弱，或 lock-up 供给压住股价，估值会很脆。</td>
+              <td>等第一份 earnings + lock-up 细节；建 segment sum-of-parts，把 Connectivity 与 AI burn 分开估。</td>
+            </tr>
+            <tr>
+              <td><div class="ticker">AVGO</div><span class="bucket b">B - 质量对照</span></td>
+              <td>$373.90 close; ~$1.78T mkt cap; P/E ~62x。</td>
+              <td>AI custom silicon/networking 仍是核心受益路径；相对 AMD/SPCX，现金流质量和客户锁定更容易验证。</td>
+              <td>若 hyperscaler ASIC 增长持续，AVGO 可能比“纯 GPU 追赶”更有可见性。</td>
+              <td>已是 $1T+ 大盘 AI infrastructure consensus long，新的 variant wedge 不如 AMD 明确。</td>
+              <td>Google/Apple/ASIC 客户集中或增长预期下修。</td>
+              <td>作为 AMD/NVDA 的估值和毛利标尺，不作为本轮第一优先深挖。</td>
+            </tr>
+            <tr>
+              <td><div class="ticker">NVDA</div><span class="bucket c">C - 标尺/持仓基准</span></td>
+              <td>$195.94 intraday; ~$4.74T mkt cap; P/E ~30x。</td>
+              <td>AI capex 链条仍绕不开 NVDA；但它更多是 benchmark，不是本轮最明显“新机会”。</td>
+              <td>低 P/E 表面看不贵，但要确认 EPS 质量与下一代 rack / networking / supply timing。</td>
+              <td>市场已经把 NVDA 作为 AI 默认赢家，持仓拥挤和预期风险高。</td>
+              <td>产品节奏、毛利、hyperscaler capex 或出口限制冲击。</td>
+              <td>用来做 AI basket 风险对冲和相对估值，不急于作为新 idea。</td>
+            </tr>
+            <tr>
+              <td><div class="ticker">RKLB</div><span class="bucket c">C - 主题观察</span></td>
+              <td>$93.09 close; ~$55.7B mkt cap; EPS negative。</td>
+              <td>SpaceX 上市带动 space stocks 被重新定价，RKLB 提供小盘高 beta 暴露。</td>
+              <td>若 Neutron / satellite manufacturing 执行超预期，可能有“非 SpaceX 受益者”路径。</td>
+              <td>股价和市值已经非常依赖远期执行；不能因为 SpaceX 好就自动给 RKLB 高分。</td>
+              <td>发射节奏、现金消耗或 Neutron 时间表不达标。</td>
+              <td>只做 thematic watchlist；需要单独做发射 backlog、现金 runway 和 Neutron milestone。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>估值压力粗看</h2>
+      <div class="bars">
+        <div class="small">下图不是精确 EV/Sales，只是用当前市值对最新公开收入口径做“预期重量”感知。TSLA/AMD 用 annualized latest quarter revenue；SPCX 用 2025 revenue，因为 IPO 后还没有完整公开季度历史。</div>
+        <div class="bar-row">
+          <strong>TSLA</strong>
+          <div class="bar-track"><div class="bar" style="width: 13%; background: var(--gold);"></div></div>
+          <span>~14.7x</span>
+        </div>
+        <div class="bar-row">
+          <strong>AMD</strong>
+          <div class="bar-track"><div class="bar" style="width: 20%; background: var(--green);"></div></div>
+          <span>~21.9x</span>
+        </div>
+        <div class="bar-row">
+          <strong>SPCX</strong>
+          <div class="bar-track"><div class="bar" style="width: 100%; background: var(--red);"></div></div>
+          <span>~110.8x</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Top Idea Cards</h2>
+      <div class="grid cards">
+        <article class="card">
+          <span class="tag">AMD - deepest work first</span>
+          <h3>Actionability</h3>
+          <p>不是无脑追高，而是值得马上建模型。触发点是 2026-07-22/23 Advancing AI 和 Q2 打印，重点看 Data Center 规模、gross margin、MI450/Helios 客户可见度。</p>
+          <ul>
+            <li><strong>What makes it investable:</strong> Q2 beat/raise 与 2027 AI revenue visibility 同时出现。</li>
+            <li><strong>What kills it:</strong> revenue 加速但 margin/FCF 兑现弱，或 GPU 份额仍停留在叙事。</li>
+            <li><strong>Next workflow:</strong> earnings preview + 2027 scenario sensitivity。</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="tag">SPCX - strongest platform, hardest entry</span>
+          <h3>Actionability</h3>
+          <p>业务不是问题，价格和供给是问题。Connectivity/Starlink 是强资产，但 $2T+ 市值已经把 AI/space compute 的远期期权提前资本化。</p>
+          <ul>
+            <li><strong>What makes it investable:</strong> 首份季报证明 Starlink 增长与 AI capex discipline 可以共存。</li>
+            <li><strong>What kills it:</strong> AI 段亏损扩大、锁定期卖压、或指数买入结束后需求真空。</li>
+            <li><strong>Next workflow:</strong> segment SOTP + IPO supply calendar。</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="tag">TSLA - event-driven watch</span>
+          <h3>Actionability</h3>
+          <p>Q2 deliveries 很强，但 Tesla 的 stock thesis 已经从 EV 交付转成 autonomy/robotics。7 月 22 日要验证的是 margin 与 software/robotaxi 证据，而不是只看 deliveries。</p>
+          <ul>
+            <li><strong>What makes it investable:</strong> auto margin 稳住，同时 FSD/robotaxi 付费和运营范围扩大。</li>
+            <li><strong>What kills it:</strong> deliveries 靠价格/一次性需求拉动，profit pool 没跟上。</li>
+            <li><strong>Next workflow:</strong> Q2 earnings deep dive + autonomy KPI tracker。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>近端催化与监控</h2>
+      <div class="grid calendar">
+        <div class="event">
+          <div class="date">2026-07-07</div>
+          <h3>SPCX Nasdaq-100 inclusion</h3>
+          <p>短期可能有被动资金买入，但这是 flow catalyst，不等同基本面安全边际。</p>
+        </div>
+        <div class="event">
+          <div class="date">2026-07-22</div>
+          <h3>TSLA Q2 earnings</h3>
+          <p>交付已知，重点看 auto margin、energy margin、FCF、robotaxi/FSD disclosure。</p>
+        </div>
+        <div class="event">
+          <div class="date">2026-07-22/23</div>
+          <h3>AMD Advancing AI</h3>
+          <p>看 MI450/Helios roadmap、customer commitments、supply chain 和 2027 revenue framing。</p>
+        </div>
+        <div class="event">
+          <div class="date">Late Jul / Aug</div>
+          <h3>SPCX first public quarter</h3>
+          <p>官方日期未完全确认；重点是 Starlink net adds、ARPU、AI capex、lock-up commentary。</p>
+        </div>
+      </div>
+      <div class="note">
+        PM discipline: 这组股票里没有“又便宜又证据强”的简单机会。当前更像是：AMD 适合马上建模找估计差；TSLA 适合等 Q2 证明；SPCX 适合等 IPO 后供需和首份季报把价格发现做完。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>证据姿态与限制</h2>
+      <div class="note">
+        Evidence posture: preliminary / research-grade screen. 市场数据来自 Google Finance 与 MarketWatch，可能有分钟级延迟；SpaceX S-1 用本地解析确认了收入、分部 EBITDA、亏损和 capex 数字，但没有接入 Bloomberg/FactSet/CapIQ 或内部模型。任何 position sizing、目标价或买卖点都需要下一步模型和组合约束。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>来源</h2>
+      <div class="sources">
+        <ol>
+          <li><a href="https://ir.tesla.com/press-release/tesla-second-quarter-2026-production-deliveries-and-deployments">Tesla Q2 2026 Production, Deliveries & Deployments</a> - production 451,758, deliveries 480,126, storage 13.5 GWh, Q2 earnings date.</li>
+          <li><a href="https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q1-2026-Update.pdf">Tesla Q1 2026 Update PDF</a> - Q1 revenue, gross margin, capacity, Cybercab/Semi/Optimus and AI infrastructure disclosures.</li>
+          <li><a href="https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results">AMD Q1 2026 Financial Results</a> - Q1 revenue, margins, Data Center commentary, partnerships, Q2 guide.</li>
+          <li><a href="https://ir.amd.com/news-events/ir-calendar">AMD IR Calendar</a> - Advancing AI 2026 on July 22-23, 2026.</li>
+          <li><a href="https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Pricing-of-Initial-Public-Offering/default.aspx">SpaceX IPO pricing release</a> - IPO price, shares, ticker SPCX, Nasdaq listing.</li>
+          <li><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/0001628280-26-036936-index.htm">SpaceX SEC S-1 filing detail</a> - S-1 source for 2025 revenue, segment financials, Q1 2026 data and risk disclosures.</li>
+          <li><a href="https://www.google.com/finance/beta/quote/TSLA:NASDAQ">Google Finance TSLA</a>, <a href="https://www.google.com/finance/beta/quote/AMD:NASDAQ">AMD</a>, <a href="https://www.google.com/finance/beta/quote/SPCX:NASDAQ">SPCX</a>, <a href="https://www.google.com/finance/beta/quote/NVDA:NASDAQ">NVDA</a>, <a href="https://www.google.com/finance/beta/quote/AVGO:NASDAQ">AVGO</a>, <a href="https://www.google.com/finance/beta/quote/RKLB:NASDAQ">RKLB</a> - market data snapshots as of July 6, 2026.</li>
+          <li><a href="https://www.marketwatch.com/investing/stock/spcx">MarketWatch SPCX quote</a> - alternate intraday quote, market cap, float and short interest snapshot.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

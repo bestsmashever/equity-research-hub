@@ -1,3 +1,15 @@
+.report-redirect {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--page);
+}
+
+.report-redirect a {
+  color: var(--teal);
+  font-weight: 750;
+}
+
 .workspace {
   min-height: 100vh;
   display: grid;
