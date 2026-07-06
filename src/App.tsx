@@ -57,6 +57,13 @@ type SourceRow = {
   notes: string
 }
 
+type ResearchFile = {
+  title: string
+  href: string
+  meta: string
+  status: string
+}
+
 const ideas: Idea[] = [
   {
     ticker: 'AMD',
@@ -215,16 +222,18 @@ const sources: SourceRow[] = [
   { source: '分析师模型', type: '缺失', reliability: 1, posture: '缺口', notes: '本轮未接 Bloomberg、FactSet、CapIQ consensus' },
 ]
 
-const researchFiles = [
+const researchFiles: ResearchFile[] = [
   {
     title: '股票机会初筛报告',
     href: '/equity_idea_triage_2026-07-06.html',
     meta: 'TSLA / AMD / SpaceX / NVDA / AVGO / RKLB',
+    status: '正式报告',
   },
   {
     title: 'AMD 深挖备忘录',
     href: '/amd_deep_dive_2026-07-06.html',
     meta: 'Q1 2026 / Data Center / MI450 / Helios',
+    status: '正式备忘录',
   },
 ]
 
@@ -319,7 +328,7 @@ function ResearchHub() {
         <header className="topbar">
           <div className="title-lockup">
             <strong>股票研究台</strong>
-            <span>US growth / AI / Space · 2026-07-06</span>
+            <span>统一入口 · US growth / AI / Space · 2026-07-06</span>
           </div>
 
           <div className="top-tabs" aria-label="优先级筛选">
@@ -359,13 +368,13 @@ function ResearchHub() {
           <section className="watchlist">
             <div className="section-heading">
               <div>
-                <h1>观察池</h1>
-                <p>{filteredIdeas.length} 个标的 · 美股大盘成长、太空与 AI 相关机会</p>
+                <h1>统一研究入口</h1>
+                <p>{filteredIdeas.length} 个标的、正式报告、催化与来源质量都从这个页面进入</p>
               </div>
               <div className="status-line">
-                <span>main</span>
+                <span>single link</span>
                 <CheckCircle2 size={14} />
-                <strong>已部署</strong>
+                <strong>首页索引</strong>
               </div>
             </div>
 
@@ -433,6 +442,7 @@ function ResearchHub() {
                     <a className="resource-link" href={file.href} key={file.href}>
                       <strong>{file.title}</strong>
                       <span>{file.meta}</span>
+                      <small>{file.status}</small>
                     </a>
                   ))}
                 </div>
@@ -555,17 +565,7 @@ function ResearchHub() {
 }
 
 function App() {
-  const isResearchRoute = window.location.pathname === '/' || window.location.pathname === '/hub'
-
-  if (isResearchRoute) {
-    return <ResearchHub />
-  }
-
-  return (
-    <div className="report-redirect">
-      <a href="/equity_idea_triage_2026-07-06.html">打开股票机会初筛报告</a>
-    </div>
-  )
+  return <ResearchHub />
 }
 
 export default App

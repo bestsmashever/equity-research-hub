@@ -24,3 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Local source captures and scratch exports; formal reports live in public/.
+research-materials/
