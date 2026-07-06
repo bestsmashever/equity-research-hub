@@ -215,6 +215,19 @@ const sources: SourceRow[] = [
   { source: '分析师模型', type: '缺失', reliability: 1, posture: '缺口', notes: '本轮未接 Bloomberg、FactSet、CapIQ consensus' },
 ]
 
+const researchFiles = [
+  {
+    title: '股票机会初筛报告',
+    href: '/equity_idea_triage_2026-07-06.html',
+    meta: 'TSLA / AMD / SpaceX / NVDA / AVGO / RKLB',
+  },
+  {
+    title: 'AMD 深挖备忘录',
+    href: '/amd_deep_dive_2026-07-06.html',
+    meta: 'Q1 2026 / Data Center / MI450 / Helios',
+  },
+]
+
 const navItems = [
   { label: '观察池', icon: Table2 },
   { label: '研究笔记', icon: FileText },
@@ -412,8 +425,16 @@ function ResearchHub() {
 
               <section className="panel">
                 <div className="panel-title">
-                  <h2>来源</h2>
-                  <span>证据质量</span>
+                  <h2>资料与来源</h2>
+                  <span>文件 / 证据质量</span>
+                </div>
+                <div className="resource-list">
+                  {researchFiles.map((file) => (
+                    <a className="resource-link" href={file.href} key={file.href}>
+                      <strong>{file.title}</strong>
+                      <span>{file.meta}</span>
+                    </a>
+                  ))}
                 </div>
                 <div className="source-list">
                   {sources.map((source) => (
@@ -534,15 +555,9 @@ function ResearchHub() {
 }
 
 function App() {
-  const isHubRoute = window.location.pathname === '/hub'
+  const isResearchRoute = window.location.pathname === '/' || window.location.pathname === '/hub'
 
-  useEffect(() => {
-    if (!isHubRoute) {
-      window.location.replace('/equity_idea_triage_2026-07-06.html')
-    }
-  }, [isHubRoute])
-
-  if (isHubRoute) {
+  if (isResearchRoute) {
     return <ResearchHub />
   }
 

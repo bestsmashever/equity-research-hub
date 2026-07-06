@@ -430,8 +430,50 @@ tbody tr:last-child td {
 }
 
 .mini-table,
+.resource-list,
 .source-list {
   display: grid;
+}
+
+.resource-list {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+}
+
+.resource-link {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--slate);
+  padding: 9px 10px;
+  text-decoration: none;
+}
+
+.resource-link:hover {
+  border-color: var(--line-strong);
+  background: var(--hover);
+}
+
+.resource-link strong,
+.resource-link span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resource-link strong {
+  color: var(--ink);
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.resource-link span {
+  color: var(--muted);
+  font-size: 11px;
 }
 
 .mini-row,
@@ -807,6 +849,10 @@ mark {
     min-width: 560px;
   }
 
+  .resource-list {
+    min-width: 560px;
+  }
+
   .panel {
     overflow-x: auto;
   }
@@ -903,6 +949,11 @@ mark {
   .source-row {
     min-width: 0;
     grid-template-columns: 72px 42px 72px 54px;
+  }
+
+  .resource-list {
+    min-width: 0;
+    grid-template-columns: 1fr;
   }
 
   .source-row small {
