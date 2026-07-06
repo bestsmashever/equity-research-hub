@@ -249,7 +249,7 @@ function ResearchHub() {
       `第一否决：${selectedIdea.firstRejection}`,
       `下一步证据：${selectedIdea.nextEvidence.join('、')}`,
     ]
-    navigator.clipboard?.writeText(lines.join('\n'))
+    void navigator.clipboard?.writeText(lines.join('\n')).catch(() => undefined)
     setActivity(`已复制 ${selectedIdea.ticker} 研究摘要`)
   }
 
