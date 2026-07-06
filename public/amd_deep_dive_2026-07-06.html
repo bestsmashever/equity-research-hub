@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>AMD 深挖备忘录 - 2026-07-06</title>
+  <style>
+    :root {
+      --ink: #101418;
+      --slate: #2d3640;
+      --muted: #66717d;
+      --line: #d9dee4;
+      --line-strong: #c4cbd3;
+      --paper: #ffffff;
+      --soft: #f7f8fa;
+      --accent: #0c5f70;
+      --green: #137243;
+      --gold: #9b6500;
+      --red: #a13a36;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--slate);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 13px;
+      line-height: 1.52;
+      font-variant-numeric: tabular-nums;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1180px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 24px 0 52px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 18px;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 18px;
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1.1;
+      margin-bottom: 7px;
+    }
+
+    h2 {
+      color: var(--ink);
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    h3 {
+      color: var(--ink);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .meta, .small, td, th { font-size: 12px; }
+    .meta, .small { color: var(--muted); }
+
+    .quote-box {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--soft);
+      padding: 12px;
+    }
+
+    .quote-box strong {
+      display: block;
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .tile,
+    section {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+
+    .tile {
+      padding: 12px;
+      min-height: 96px;
+    }
+
+    .tile span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .tile strong {
+      display: block;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+
+    section {
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 8px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--soft);
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .verdict {
+      border-left: 4px solid var(--accent);
+      background: #fbfefe;
+    }
+
+    .risk {
+      border-left: 4px solid var(--red);
+      background: #fffafa;
+    }
+
+    .good { color: var(--green); font-weight: 750; }
+    .watch { color: var(--gold); font-weight: 750; }
+    .bad { color: var(--red); font-weight: 750; }
+
+    @media (max-width: 820px) {
+      header,
+      .grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>AMD 深挖备忘录</h1>
+        <p class="meta">As of 2026-07-06 · 自用研究备忘录 · 不是买卖建议</p>
+      </div>
+      <div class="quote-box">
+        <strong>$552.05</strong>
+        <span>市值约 $910.9B · P/E 约 181x · 当日约 +6.6%</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="tile">
+        <span>Q1 2026 Revenue</span>
+        <strong>$10.3B</strong>
+        <p class="good">+38% YoY</p>
+      </div>
+      <div class="tile">
+        <span>Data Center Revenue</span>
+        <strong>$5.8B</strong>
+        <p class="good">+57% YoY; +7% QoQ</p>
+      </div>
+      <div class="tile">
+        <span>Q2 2026 Guide</span>
+        <strong>$11.2B</strong>
+        <p class="watch">+/- $0.3B; non-GAAP GM ~56%</p>
+      </div>
+      <div class="tile">
+        <span>Free Cash Flow</span>
+        <strong>$2.6B</strong>
+        <p class="good">25% FCF margin</p>
+      </div>
+    </div>
+
+    <section class="verdict">
+      <h2>PM 结论</h2>
+      <p>
+        AMD 仍然是这组观察池里最值得继续深挖的名字，但现在的投资问题已经不是“AI 半导体有没有 beta”，而是：
+        <strong>市场是否仍低估 EPYC CPU attach、MI450/Helios 大客户部署和毛利率韧性同时兑现的概率。</strong>
+        价格已经很贵，不能靠主题买；只有当 Q2 和 Advancing AI 把 2027 年数据中心收入可见度、客户部署节奏和 gross margin bridge 一起坐实时，才值得继续把它放在 A 级深挖。
+      </p>
+    </section>
+
+    <section>
+      <h2>核心 thesis</h2>
+      <ul>
+        <li><strong>Data Center 已经是主引擎：</strong>Q1 Data Center 收入 $5.8B，同比 +57%，营收体量已经超过 Client & Gaming。</li>
+        <li><strong>CPU 不是配角：</strong>公司在 Q1 call 中强调 agentic AI / inference 会提高 CPU 需求；Q2 管理层预计 server CPU revenue 同比增长超过 70%。</li>
+        <li><strong>MI450/Helios 把故事从 chip 变成 system：</strong>Meta 和 OpenAI 的 6GW 级协议把 2H26 部署窗口推到台前，重点从 specs 转向 volume timing、ROCm、rack-scale economics 和毛利率。</li>
+        <li><strong>现金流质量改善：</strong>Q1 FCF $2.566B、FCF margin 25%，说明这不是只有收入增长、没有现金转化的 AI 故事。</li>
+      </ul>
+    </section>
+
+    <div class="two-col">
+      <section>
+        <h2>什么已经计价</h2>
+        <ul>
+          <li>市值约 $911B，P/E 约 181x，价格已经在支付明显的 2027 AI 部署成功。</li>
+          <li>Q2 revenue guide $11.2B 和 non-GAAP GM ~56% 已经成为近端地板，不是惊喜本身。</li>
+          <li>OpenAI/Meta 6GW headline 已经被市场理解，后面要看履约节奏和经济性。</li>
+        </ul>
+      </section>
+
+      <section class="risk">
+        <h2>第一否决条件</h2>
+        <ul>
+          <li>Q2 Data Center 不能实现双位数环比增长，或 server CPU 不能接近管理层 >70% YoY 口径。</li>
+          <li>MI450/Helios 订单可见度强，但毛利率被 customer mix、supply chain 或定制化成本压到低于 55%。</li>
+          <li>Advancing AI 给不出客户部署、软件成熟度、rack-scale TCO 或 2027 revenue framing。</li>
+        </ul>
+      </section>
+    </div>
+
+    <section>
+      <h2>下一步证据清单</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>证据</th>
+            <th>要看的问题</th>
+            <th>解读</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Advancing AI 2026</td>
+            <td>是否给出 MI450/Helios 客户、产能、ROCm、TCO 和 2027 revenue 框架。</td>
+            <td>决定这是可建模订单，还是继续停留在 story 阶段。</td>
+          </tr>
+          <tr>
+            <td>Q2 Data Center</td>
+            <td>收入环比、server CPU YoY、Instinct 中国以外需求、客户集中度。</td>
+            <td>验证 Q1 加速是否可持续。</td>
+          </tr>
+          <tr>
+            <td>Gross margin bridge</td>
+            <td>MI450/Helios 是否低于 corporate average；软件/系统化是否能抵消硬件 margin 压力。</td>
+            <td>高增长但低毛利会让估值先压缩。</td>
+          </tr>
+          <tr>
+            <td>OpenAI / Meta milestones</td>
+            <td>首个 1GW 2H26 部署是否按期、是否出现 warrant vesting 或订单里程碑。</td>
+            <td>把 headline agreement 转成 revenue visibility。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>情景判断</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>情景</th>
+            <th>触发条件</th>
+            <th>动作纪律</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="good">Bull</td>
+            <td>Q2 beat/raise + Data Center 双位数环比 + Advancing AI 给出 2027 部署和毛利率可见度。</td>
+            <td>继续建模型，重点反推 2027 Data Center revenue 和 non-GAAP GM 组合。</td>
+          </tr>
+          <tr>
+            <td class="watch">Base</td>
+            <td>Q2 符合 guide，AI 活动提供客户信号但缺少足够经济性细节。</td>
+            <td>保留 A 级研究，但不把高预期当安全边际；等 Q2 call 和后续订单口径。</td>
+          </tr>
+          <tr>
+            <td class="bad">Bear</td>
+            <td>Data Center 增速放缓、毛利率压缩、或 MI450/Helios 只有 headline 没有可建模订单。</td>
+            <td>降级为观察，估值风险优先于 AI beta。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>来源与限制</h2>
+      <ul>
+        <li><a href="https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results">AMD Q1 2026 earnings release</a> - revenue, margins, Data Center revenue, Q2 guidance, FCF.</li>
+        <li><a href="https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000076/amd-20260328.htm">AMD Q1 2026 Form 10-Q</a> and <a href="https://www.sec.gov/Archives/edgar/data/2488/000000248826000072/amdq126earningsslidesfin.htm">earnings slides filed with SEC</a> - GAAP/non-GAAP bridge, segment results, balance sheet and FCF support.</li>
+        <li><a href="https://d1io3yog0oux5.cloudfront.net/_0d6754041d76046f28a2092d6d2b8f68/amd/db/841/9232/webcast_transcript/AMD_1Q_2026_Earnings.pdf">AMD Q1 2026 earnings transcript PDF</a> - management commentary on Data Center, server CPU and AI demand.</li>
+        <li><a href="https://ir.amd.com/news-events/press-releases/detail/1283/amd-announces-advancing-ai-2026">AMD Advancing AI 2026 announcement</a> and <a href="https://www.amd.com/en/corporate/events/advancing-ai.html">event page</a> - upcoming catalyst and speaker/customer context.</li>
+        <li><a href="https://ir.amd.com/news-events/press-releases/detail/1260/amd-and-openai-announce-strategic-partnership-to-deploy-6-gigawatts-of-amd-gpus">AMD / OpenAI strategic partnership</a>, <a href="https://www.amd.com/en/newsroom/press-releases/2026-2-24-amd-and-meta-announce-expanded-strategic-partnersh.html">AMD / Meta partnership</a>, and <a href="https://about.fb.com/news/2026/02/meta-amd-partner-longterm-ai-infrastructure-agreement/">Meta announcement</a> - 6GW deployment framework and 2H26 timing.</li>
+        <li>市场数据：AMD $552.05、约 $910.9B 市值、P/E 约 181x，为 2026-07-06 盘中快照；未接 Bloomberg / FactSet / CapIQ consensus export。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

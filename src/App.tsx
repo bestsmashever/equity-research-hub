@@ -32,6 +32,13 @@ type Idea = {
   firstRejection: string
   nextEvidence: string[]
   workflow: string
+  deepDiveUrl?: string
+  keyMetrics?: Array<{
+    label: string
+    value: string
+    note: string
+  }>
+  sourcePosture?: string
 }
 
 type Catalyst = {
@@ -55,23 +62,31 @@ const ideas: Idea[] = [
     ticker: 'AMD',
     name: '超威半导体',
     price: '$552.05',
-    move: '+5.42% 1W',
-    marketCap: '$900B',
+    move: '+6.6% 今日',
+    marketCap: '$910.9B',
     sector: '半导体',
     priority: 'A',
-    setup: '估计差',
+    setup: 'CPU+GPU 估计差',
     timeFrame: '6-18m',
     conviction: 4,
     whyNow:
-      'Q1 收入同比增长 38%，数据中心同比增长 57%；7 月 AI 活动和 Q2 打印有机会把 2027 年 AI 收入可见度进一步坐实。',
+      'Q1 收入 $10.3B、同比 +38%；Data Center $5.8B、同比 +57%，且公司把 Q2 收入指到 $11.2B +/- $0.3B、非 GAAP 毛利率约 56%。7 月 Advancing AI 和 Q2 打印会直接检验 2027 可见度。',
     variantWedge:
-      '市场可能仍把 AMD 当成“第二 GPU 供应商”来定价，但云厂商多供应商化和 EPYC 份额提升可能让估计上修路径更宽。',
+      '真正的估计差不是“AMD 是 Nvidia 第二供应商”，而是 EPYC 在 agentic AI / inference 的 CPU attach 率上修 + MI450/Helios 大客户部署同时兑现。若 CPU-to-GPU ratio 从 host-node 逻辑走向更高配置，AMD 的盈利池可能比纯 accelerator 份额故事更宽。',
     pricedIn:
-      '股价已经接近区间高位，门槛不低。要继续走强，需要订单和毛利率一起继续上修。',
+      '现在市值约 $911B、P/E 约 181x，价格已经在支付“2027 大规模 AI 部署 + EPYC 份额继续提升 + 毛利保持 55%-58%”的组合预期。这里不是便宜票，是需要持续证据喂养的高预期票。',
     firstRejection:
-      '数据中心增长不能证明 MI/EPYC 订单兑现，或者收入加速但毛利率走弱。',
-    nextEvidence: ['Advancing AI 2026', 'Q2 数据中心收入', '毛利率桥', '2027 AI 收入口径'],
-    workflow: '财报预览 + 情景模型',
+      'Q2 Data Center 不能实现双位数环比增长、server CPU 不能接近公司口径的 >70% YoY，或 MI450/Helios 拉动收入但稀释毛利率到低于 55%。',
+    nextEvidence: ['Advancing AI 2026', 'Q2 Data Center 环比', 'server CPU >70% YoY', 'MI450/Helios 产能与客户', '毛利率桥'],
+    workflow: 'AMD deep dive / Q2 + Advancing AI',
+    deepDiveUrl: '/amd_deep_dive_2026-07-06.html',
+    keyMetrics: [
+      { label: 'Q1 收入', value: '$10.3B', note: '+38% YoY' },
+      { label: 'Data Center', value: '$5.8B', note: '+57% YoY' },
+      { label: 'Q2 指引', value: '$11.2B', note: '+/- $0.3B; GM ~56%' },
+      { label: 'FCF', value: '$2.6B', note: 'FCF margin 25%' },
+    ],
+    sourcePosture: '已核：AMD Q1 release、10-Q、Q1 transcript、Meta/OpenAI 官方协议、Advancing AI 活动页；缺口：sell-side consensus 明细和完整三表模型。',
   },
   {
     ticker: 'TSLA',
@@ -187,16 +202,17 @@ const ideas: Idea[] = [
 
 const catalysts: Catalyst[] = [
   { date: '2026-07-07', ticker: 'SPCX', event: '纳入 Nasdaq-100', impact: '中', window: '资金流催化' },
+  { date: '2026-07-22/23', ticker: 'AMD', event: 'Advancing AI 2026', impact: '高', window: 'MI450 / Helios / 客户' },
   { date: '2026-07-22', ticker: 'TSLA', event: 'Q2 财报', impact: '高', window: '毛利验证' },
-  { date: '2026-07-22/23', ticker: 'AMD', event: 'Advancing AI 2026', impact: '高', window: '路线图 / 客户' },
+  { date: '2026-08-04*', ticker: 'AMD', event: 'Q2 财报窗口', impact: '高', window: '未确认 / 市场预估' },
   { date: '7 月底 / 8 月', ticker: 'SPCX', event: '第一份公开季报', impact: '高', window: '价格发现' },
 ]
 
 const sources: SourceRow[] = [
-  { source: '公司披露', type: '一手', reliability: 5, posture: '事实', notes: '10-Q、S-1、财报公告' },
-  { source: '公司 IR', type: '一手', reliability: 4, posture: '管理层口径', notes: '指引、deck、活动日历' },
-  { source: '市场数据', type: '公开', reliability: 3, posture: '快照', notes: 'Google Finance / MarketWatch' },
-  { source: '分析师模型', type: '缺失', reliability: 1, posture: '缺口', notes: '本轮未接 Bloomberg、FactSet、CapIQ' },
+  { source: '公司披露', type: '一手', reliability: 5, posture: '事实', notes: 'AMD Q1 release、10-Q、财报 slides' },
+  { source: '公司 IR', type: '一手', reliability: 4, posture: '管理层口径', notes: 'Q1 transcript、Advancing AI、客户协议' },
+  { source: '市场数据', type: '公开', reliability: 3, posture: '快照', notes: 'Google Finance / MarketWatch / finance snapshot' },
+  { source: '分析师模型', type: '缺失', reliability: 1, posture: '缺口', notes: '本轮未接 Bloomberg、FactSet、CapIQ consensus' },
 ]
 
 const navItems = [
@@ -476,10 +492,38 @@ function ResearchHub() {
               </ul>
             </section>
 
+            {selectedIdea.keyMetrics ? (
+              <section className="memo-section">
+                <h3>关键数据</h3>
+                <div className="metric-grid">
+                  {selectedIdea.keyMetrics.map((metric) => (
+                    <div className="metric-card" key={metric.label}>
+                      <span>{metric.label}</span>
+                      <strong>{metric.value}</strong>
+                      <small>{metric.note}</small>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {selectedIdea.sourcePosture ? (
+              <section className="memo-section">
+                <h3>来源姿态</h3>
+                <p>{selectedIdea.sourcePosture}</p>
+              </section>
+            ) : null}
+
             <div className="workflow">
               <span>下一步工作流</span>
               <strong>{selectedIdea.workflow}</strong>
             </div>
+
+            {selectedIdea.deepDiveUrl ? (
+              <a className="memo-link" href={selectedIdea.deepDiveUrl}>
+                打开 AMD 深挖备忘录
+              </a>
+            ) : null}
 
             <div className="activity">{activity}</div>
           </aside>

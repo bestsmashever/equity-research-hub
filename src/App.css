@@ -609,12 +609,40 @@ mark {
   margin-bottom: 4px;
 }
 
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.metric-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-subtle);
+  padding: 9px 10px;
+}
+
+.metric-card span,
+.metric-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.metric-card strong {
+  display: block;
+  color: var(--ink);
+  font-size: 15px;
+  margin: 2px 0;
+}
+
 .rejection {
   border-left: 3px solid var(--red);
   background: #fffafa;
 }
 
 .workflow,
+.memo-link,
 .activity {
   margin-top: 10px;
   padding: 11px 12px;
@@ -622,6 +650,22 @@ mark {
 
 .workflow {
   border-left: 3px solid var(--accent);
+}
+
+.memo-link {
+  display: block;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.memo-link:hover {
+  background: var(--hover);
 }
 
 .activity {
@@ -791,6 +835,10 @@ mark {
 
   .status-line {
     width: max-content;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
   }
 
   table {
