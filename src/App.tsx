@@ -41,7 +41,7 @@ type Catalyst = {
   date: string
   ticker: string
   event: string
-  impact: 'High' | 'Medium'
+  impact: '高' | '中'
   window: string
 }
 
@@ -56,171 +56,171 @@ type SourceRow = {
 const ideas: Idea[] = [
   {
     ticker: 'AMD',
-    name: 'Advanced Micro Devices',
+    name: '超威半导体',
     price: '$552.05',
     move: '+5.42% 1W',
     marketCap: '$900B',
-    sector: 'Semiconductors',
+    sector: '半导体',
     priority: 'A',
-    setup: 'Variant wedge',
+    setup: '估计差',
     timeFrame: '6-18m',
     conviction: 4,
     whyNow:
-      'Q1 revenue grew 38% YoY and Data Center grew 57% YoY; July AI event and Q2 print can tighten 2027 AI revenue visibility.',
+      'Q1 收入同比增长 38%，数据中心同比增长 57%；7 月 AI 活动和 Q2 打印有机会把 2027 年 AI 收入可见度进一步坐实。',
     variantWedge:
-      'Market may still underwrite AMD as a second-source GPU vendor, while hyperscaler diversification plus EPYC share gains can make the estimate path broader.',
+      '市场可能仍把 AMD 当成“第二 GPU 供应商”来定价，但云厂商多供应商化和 EPYC 份额提升可能让估计上修路径更宽。',
     pricedIn:
-      'The stock is already near the high end of its range, so the bar is not low. Orders and gross margin need to keep revising up.',
+      '股价已经接近区间高位，门槛不低。要继续走强，需要订单和毛利率一起继续上修。',
     firstRejection:
-      'Data Center growth fails to prove MI and EPYC order conversion, or gross margin weakens despite revenue acceleration.',
-    nextEvidence: ['Advancing AI 2026', 'Q2 Data Center revenue', 'Gross margin bridge', '2027 AI revenue framing'],
-    workflow: 'Earnings preview + scenario model',
+      '数据中心增长不能证明 MI/EPYC 订单兑现，或者收入加速但毛利率走弱。',
+    nextEvidence: ['Advancing AI 2026', 'Q2 数据中心收入', '毛利率桥', '2027 AI 收入口径'],
+    workflow: '财报预览 + 情景模型',
   },
   {
     ticker: 'TSLA',
-    name: 'Tesla',
+    name: '特斯拉',
     price: '$416.06',
     move: '+3.21% 1M',
     marketCap: '$1.32T',
-    sector: 'Autos / autonomy',
+    sector: '汽车 / 自动驾驶',
     priority: 'B',
-    setup: 'Event driven watch',
+    setup: '事件驱动观察',
     timeFrame: '3-12m',
     conviction: 3,
     whyNow:
-      'Q2 deliveries were strong at 480,126 vehicles and storage deployments reached 13.5 GWh, with Q2 financials due July 22.',
+      'Q2 交付 480,126 辆，储能部署 13.5 GWh，Q2 财报在 7 月 22 日公布。',
     variantWedge:
-      'The stock only works from here if autonomy, robotaxi, energy storage, and robotics become observable profit pools rather than narrative options.',
+      '这里往后能不能继续 work，关键是自动驾驶、robotaxi、储能和机器人能否从叙事期权变成可观察利润池。',
     pricedIn:
-      'The market is paying far above a traditional automaker multiple; software and robotics expectations are already heavy.',
+      '市场给的已经不是传统车企估值；软件、robotaxi、Optimus 和储能预期都已经很重。',
     firstRejection:
-      'Deliveries were pulled forward or price-led while auto gross margin, free cash flow, or robotaxi evidence disappoints.',
-    nextEvidence: ['Auto gross margin ex credits', 'FSD paid attach rate', 'Robotaxi operating footprint', 'Energy storage margin'],
-    workflow: 'Q2 earnings deep dive',
+      '交付强是价格或一次性需求拉动，但汽车毛利率、自由现金流或 robotaxi 证据不够。',
+    nextEvidence: ['扣除 credit 的汽车毛利率', 'FSD 付费渗透率', 'Robotaxi 运营范围', '储能毛利率'],
+    workflow: 'Q2 财报深挖',
   },
   {
     ticker: 'SPCX',
     name: 'SpaceX',
     price: '$157.04',
-    move: 'IPO reset',
+    move: 'IPO 后定价',
     marketCap: '$2.07T',
-    sector: 'Space / connectivity / AI',
+    sector: '太空 / 连接 / AI',
     priority: 'B',
-    setup: 'Valuation gated',
+    setup: '估值门槛',
     timeFrame: '6-18m',
     conviction: 3,
     whyNow:
-      'June IPO, July Nasdaq-100 inclusion, and the first public quarter create price discovery after a major re-rating.',
+      '6 月 IPO、7 月纳入 Nasdaq-100、第一份公开季报，都会推动上市后的价格发现。',
     variantWedge:
-      'Connectivity / Starlink is already a scaled profit pool, but the public equity now also embeds an orbital AI infrastructure option.',
+      'Connectivity/Starlink 已经是规模化利润池，但上市后的股票还嵌入了轨道 AI 基建的远期期权。',
     pricedIn:
-      'At roughly 111x 2025 revenue, a large amount of Starlink growth, reusable launch advantage, and AI optionality is already capitalized.',
+      '约 111x 2025 收入的市值口径下，Starlink 增长、可复用火箭优势和 AI 可选性已经提前资本化。',
     firstRejection:
-      'AI segment cash burn accelerates, Starlink ARPU or net adds soften, or post-IPO lock-up supply overwhelms index-related demand.',
-    nextEvidence: ['First public earnings', 'Starlink net adds and ARPU', 'AI capex discipline', 'Lock-up schedule'],
-    workflow: 'Segment SOTP + IPO supply calendar',
+      'AI 分部现金消耗加速、Starlink ARPU 或净增走弱，或 IPO 后锁定期供给压过指数需求。',
+    nextEvidence: ['第一份公开财报', 'Starlink 净增与 ARPU', 'AI 资本开支纪律', '锁定期时间表'],
+    workflow: '分部 SOTP + IPO 供给日历',
   },
   {
     ticker: 'NVDA',
-    name: 'NVIDIA',
+    name: '英伟达',
     price: '$195.94',
     move: '+20.34% 1M',
     marketCap: '$4.74T',
-    sector: 'AI infrastructure',
+    sector: 'AI 基建',
     priority: 'C',
-    setup: 'Benchmark',
+    setup: '标尺',
     timeFrame: '6-12m',
     conviction: 3,
     whyNow:
-      'Still the benchmark for AI compute earnings power and capex risk, but less obviously a fresh dislocation in this screen.',
+      '仍是 AI 算力盈利能力和资本开支风险的基准，但这一轮不是最明显的新错位机会。',
     variantWedge:
-      'Use as the opportunity-cost and factor exposure benchmark for AMD and broader AI infrastructure ideas.',
+      '作为 AMD 和 AI 基建组合的机会成本、估值和因子暴露标尺。',
     pricedIn:
-      'Default AI winner status is already widely owned and expectations-heavy.',
+      '默认 AI 赢家的地位已经被广泛持有，预期风险高。',
     firstRejection:
-      'Product timing, gross margin, hyperscaler capex, or export restrictions break the estimate path.',
-    nextEvidence: ['Next rack transition', 'Networking attach', 'Export control updates', 'Customer capex commentary'],
-    workflow: 'Basket benchmark / hedge work',
+      '产品节奏、毛利率、云厂商资本开支或出口限制打断估计路径。',
+    nextEvidence: ['下一代机柜切换', '网络产品 attach', '出口限制更新', '客户资本开支口径'],
+    workflow: 'AI 组合标尺 / 对冲观察',
   },
   {
     ticker: 'AVGO',
-    name: 'Broadcom',
+    name: '博通',
     price: '$373.90',
     move: '+12.51% 1M',
     marketCap: '$1.78T',
-    sector: 'Custom silicon',
+    sector: '定制芯片',
     priority: 'B',
-    setup: 'Quality compare',
+    setup: '质量对照',
     timeFrame: '6-18m',
     conviction: 3,
     whyNow:
-      'Custom silicon and networking remain high-quality AI exposure with clearer cash-flow verification than many pure optionality names.',
+      '定制芯片和网络产品仍是高质量 AI 暴露，相比纯可选性名字更容易用现金流验证。',
     variantWedge:
-      'Hyperscaler ASIC growth can be more durable than a simple GPU-share story.',
+      'Hyperscaler ASIC 增长可能比简单的 GPU 份额故事更耐久。',
     pricedIn:
-      'Already a consensus large-cap AI infrastructure long, so the incremental wedge is narrower than AMD.',
+      '已经是共识大盘 AI 基建多头，新增估计差不如 AMD 明确。',
     firstRejection:
-      'Customer concentration or ASIC growth expectations reset lower.',
-    nextEvidence: ['AI semiconductor revenue', 'Customer concentration', 'Networking demand', 'Margin durability'],
-    workflow: 'Relative-value compare',
+      '客户集中度或 ASIC 增长预期下修。',
+    nextEvidence: ['AI 半导体收入', '客户集中度', '网络产品需求', '毛利韧性'],
+    workflow: '相对估值对照',
   },
   {
     ticker: 'RKLB',
-    name: 'Rocket Lab',
+    name: '火箭实验室',
     price: '$93.09',
     move: '+26.45% 1M',
     marketCap: '$55.7B',
-    sector: 'Space systems',
+    sector: '太空系统',
     priority: 'C',
-    setup: 'Theme watch',
+    setup: '主题观察',
     timeFrame: '12-24m',
     conviction: 2,
     whyNow:
-      'SpaceX listing can reprice public space equities, but the exposure pathway is not a direct substitute.',
+      'SpaceX 上市会重新定价公开市场太空股，但 RKLB 不是直接替代品。',
     variantWedge:
-      'Neutron and space systems execution could create a non-SpaceX beneficiary path.',
+      'Neutron 和太空系统业务执行如果超预期，可能形成非 SpaceX 受益路径。',
     pricedIn:
-      'A lot of execution already sits in the market cap; price can move on theme beta before fundamentals catch up.',
+      '很多远期执行已经在市值里；股价可能先跟主题 beta 走，基本面随后才追上。',
     firstRejection:
-      'Launch cadence, cash burn, or Neutron milestones slip.',
-    nextEvidence: ['Neutron milestones', 'Backlog mix', 'Cash runway', 'Launch cadence'],
-    workflow: 'Thematic watchlist',
+      '发射节奏、现金消耗或 Neutron milestone 延后。',
+    nextEvidence: ['Neutron 里程碑', 'Backlog 构成', '现金 runway', '发射节奏'],
+    workflow: '主题观察池',
   },
 ]
 
 const catalysts: Catalyst[] = [
-  { date: 'Jul 07, 2026', ticker: 'SPCX', event: 'Nasdaq-100 inclusion', impact: 'Medium', window: 'Flow catalyst' },
-  { date: 'Jul 22, 2026', ticker: 'TSLA', event: 'Q2 earnings', impact: 'High', window: 'Margin proof' },
-  { date: 'Jul 22-23, 2026', ticker: 'AMD', event: 'Advancing AI 2026', impact: 'High', window: 'Roadmap / customers' },
-  { date: 'Late Jul / Aug', ticker: 'SPCX', event: 'First public quarter', impact: 'High', window: 'Price discovery' },
+  { date: '2026-07-07', ticker: 'SPCX', event: '纳入 Nasdaq-100', impact: '中', window: '资金流催化' },
+  { date: '2026-07-22', ticker: 'TSLA', event: 'Q2 财报', impact: '高', window: '毛利验证' },
+  { date: '2026-07-22/23', ticker: 'AMD', event: 'Advancing AI 2026', impact: '高', window: '路线图 / 客户' },
+  { date: '7 月底 / 8 月', ticker: 'SPCX', event: '第一份公开季报', impact: '高', window: '价格发现' },
 ]
 
 const sources: SourceRow[] = [
-  { source: 'Company filings', type: 'Primary', reliability: 5, posture: 'Fact', notes: '10-Q, S-1, earnings releases' },
-  { source: 'Company IR', type: 'Primary', reliability: 4, posture: 'Management claim', notes: 'Guides, decks, event calendars' },
-  { source: 'Market data', type: 'Public', reliability: 3, posture: 'Snapshot', notes: 'Google Finance / MarketWatch' },
-  { source: 'Analyst model', type: 'Missing', reliability: 1, posture: 'Gap', notes: 'No Bloomberg, FactSet, or CapIQ in this pass' },
+  { source: '公司披露', type: '一手', reliability: 5, posture: '事实', notes: '10-Q、S-1、财报公告' },
+  { source: '公司 IR', type: '一手', reliability: 4, posture: '管理层口径', notes: '指引、deck、活动日历' },
+  { source: '市场数据', type: '公开', reliability: 3, posture: '快照', notes: 'Google Finance / MarketWatch' },
+  { source: '分析师模型', type: '缺失', reliability: 1, posture: '缺口', notes: '本轮未接 Bloomberg、FactSet、CapIQ' },
 ]
 
 const navItems = [
-  { label: 'Watchlist', icon: LineChart },
-  { label: 'Ideas', icon: Sparkles },
-  { label: 'Research Notes', icon: FileText },
-  { label: 'Catalysts', icon: CalendarDays },
-  { label: 'Sources', icon: ClipboardList },
+  { label: '观察池', icon: LineChart },
+  { label: '想法库', icon: Sparkles },
+  { label: '研究笔记', icon: FileText },
+  { label: '催化日历', icon: CalendarDays },
+  { label: '来源', icon: ClipboardList },
 ]
 
 const priorityLabel: Record<Priority, string> = {
-  A: 'A - Deep work',
-  B: 'B - Watch / trigger',
-  C: 'C - Screen flag',
+  A: 'A - 立刻深挖',
+  B: 'B - 等触发',
+  C: 'C - 仅观察',
 }
 
 function ResearchHub() {
   const [selectedTicker, setSelectedTicker] = useState('AMD')
   const [priorityFilter, setPriorityFilter] = useState<'All' | Priority>('All')
   const [query, setQuery] = useState('')
-  const [activity, setActivity] = useState('Workspace ready')
+  const [activity, setActivity] = useState('研究台已就绪')
 
   const filteredIdeas = useMemo(() => {
     return ideas.filter((idea) => {
@@ -235,35 +235,41 @@ function ResearchHub() {
     })
   }, [priorityFilter, query])
 
+  useEffect(() => {
+    if (filteredIdeas.length > 0 && !filteredIdeas.some((idea) => idea.ticker === selectedTicker)) {
+      setSelectedTicker(filteredIdeas[0].ticker)
+    }
+  }, [filteredIdeas, selectedTicker])
+
   const selectedIdea = ideas.find((idea) => idea.ticker === selectedTicker) ?? ideas[0]
 
   const exportSummary = () => {
     const lines = [
-      'Equity Research Hub export',
-      `Selected idea: ${selectedIdea.ticker}`,
-      `Priority: ${priorityLabel[selectedIdea.priority]}`,
-      `Variant wedge: ${selectedIdea.variantWedge}`,
-      `First rejection: ${selectedIdea.firstRejection}`,
-      `Next evidence: ${selectedIdea.nextEvidence.join(', ')}`,
+      '股票研究台导出',
+      `当前股票：${selectedIdea.ticker}`,
+      `优先级：${priorityLabel[selectedIdea.priority]}`,
+      `估计差：${selectedIdea.variantWedge}`,
+      `第一否决：${selectedIdea.firstRejection}`,
+      `下一步证据：${selectedIdea.nextEvidence.join('、')}`,
     ]
     navigator.clipboard?.writeText(lines.join('\n'))
-    setActivity(`Copied ${selectedIdea.ticker} research brief`)
+    setActivity(`已复制 ${selectedIdea.ticker} 研究摘要`)
   }
 
   const createNote = () => {
-    setActivity(`Started research note for ${selectedIdea.ticker}`)
+    setActivity(`已开始 ${selectedIdea.ticker} 研究笔记`)
   }
 
   return (
     <div className="workspace">
-      <aside className="sidebar" aria-label="Research navigation">
+      <aside className="sidebar" aria-label="研究导航">
         <div className="brand">
           <div className="brand-mark">
             <LineChart size={19} />
           </div>
           <div>
-            <strong>Equity Research Hub</strong>
-            <span>Data. Notes. Edge.</span>
+            <strong>股票研究台</strong>
+            <span>数据、笔记、估计差。</span>
           </div>
         </div>
 
@@ -271,7 +277,7 @@ function ResearchHub() {
           {navItems.map((item) => {
             const Icon = item.icon
             return (
-              <button className={item.label === 'Watchlist' ? 'nav-item active' : 'nav-item'} key={item.label}>
+              <button className={item.label === '观察池' ? 'nav-item active' : 'nav-item'} key={item.label}>
                 <Icon size={18} />
                 <span>{item.label}</span>
               </button>
@@ -280,24 +286,24 @@ function ResearchHub() {
         </nav>
 
         <div className="sidebar-section">
-          <span className="sidebar-title">Portfolios</span>
-          <button>Core longs <strong>6</strong></button>
-          <button>High conviction <strong>3</strong></button>
-          <button>Speculative <strong>7</strong></button>
+          <span className="sidebar-title">组合</span>
+          <button>核心多头 <strong>6</strong></button>
+          <button>高信心 <strong>3</strong></button>
+          <button>投机观察 <strong>7</strong></button>
         </div>
 
         <div className="sidebar-section">
-          <span className="sidebar-title">Tools</span>
-          <button>Screener</button>
-          <button>Market map</button>
-          <button>Scenario lab</button>
+          <span className="sidebar-title">工具</span>
+          <button>筛选器</button>
+          <button>市场地图</button>
+          <button>情景实验室</button>
         </div>
 
         <div className="user-strip">
           <div className="avatar">XR</div>
           <div>
             <strong>Xiaoran D.</strong>
-            <span>Analyst</span>
+            <span>研究</span>
           </div>
         </div>
       </aside>
@@ -307,22 +313,22 @@ function ResearchHub() {
           <div className="repo-meta">
             <GitBranch size={18} />
             <div>
-              <strong>equity-research-hub</strong>
-              <span>main / updated today</span>
+              <strong>股票研究台</strong>
+              <span>main / 今日更新</span>
             </div>
           </div>
           <div className="deploy-card">
             <span>Vercel</span>
-            <strong><CheckCircle2 size={14} /> Ready to deploy</strong>
+            <strong><CheckCircle2 size={14} /> 已部署</strong>
           </div>
           <div className="actions">
             <button onClick={createNote}>
               <Plus size={17} />
-              New note
+              新笔记
             </button>
             <button onClick={exportSummary}>
               <Download size={17} />
-              Export
+              导出
             </button>
           </div>
         </header>
@@ -331,16 +337,16 @@ function ResearchHub() {
           <section className="watchlist">
             <div className="section-heading">
               <div>
-                <h1>Watchlist</h1>
-                <p>{filteredIdeas.length} symbols / US large-cap growth and space-AI adjacencies</p>
+                <h1>观察池</h1>
+                <p>{filteredIdeas.length} 个标的 / 美股大盘成长、太空与 AI 相关机会</p>
               </div>
               <div className="search-box">
                 <Search size={17} />
                 <input
-                  aria-label="Search symbols"
+                  aria-label="搜索股票"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search symbols..."
+                  placeholder="搜索股票、公司、板块..."
                 />
               </div>
             </div>
@@ -353,7 +359,7 @@ function ResearchHub() {
                   onClick={() => setPriorityFilter(priority)}
                 >
                   <Filter size={14} />
-                  {priority === 'All' ? 'All priorities' : priorityLabel[priority]}
+                  {priority === 'All' ? '全部优先级' : priorityLabel[priority]}
                 </button>
               ))}
             </div>
@@ -362,14 +368,14 @@ function ResearchHub() {
               <table>
                 <thead>
                   <tr>
-                    <th>Symbol</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Move</th>
-                    <th>Market Cap</th>
-                    <th>Priority</th>
-                    <th>Setup / View</th>
-                    <th>Next Evidence</th>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>近期表现</th>
+                    <th>市值</th>
+                    <th>优先级</th>
+                    <th>判断</th>
+                    <th>下一步证据</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -397,7 +403,7 @@ function ResearchHub() {
               <section className="panel">
                 <div className="panel-title">
                   <CalendarDays size={18} />
-                  <h2>Catalyst Calendar</h2>
+                  <h2>催化日历</h2>
                 </div>
                 <div className="mini-table">
                   {catalysts.map((item) => (
@@ -405,7 +411,7 @@ function ResearchHub() {
                       <span>{item.date}</span>
                       <strong>{item.ticker}</strong>
                       <em>{item.event}</em>
-                      <mark className={item.impact === 'High' ? 'risk-high' : 'risk-medium'}>{item.impact}</mark>
+                      <mark className={item.impact === '高' ? 'risk-high' : 'risk-medium'}>{item.impact}</mark>
                       <small>{item.window}</small>
                     </div>
                   ))}
@@ -415,14 +421,14 @@ function ResearchHub() {
               <section className="panel">
                 <div className="panel-title">
                   <ClipboardList size={18} />
-                  <h2>Source Quality & Notes</h2>
+                  <h2>来源质量与笔记</h2>
                 </div>
                 <div className="source-list">
                   {sources.map((source) => (
                     <div className="source-row" key={source.source}>
                       <span>{source.source}</span>
                       <strong>{source.type}</strong>
-                      <div className="dots" aria-label={`${source.reliability} out of 5 reliability`}>
+                      <div className="dots" aria-label={`来源可靠度 ${source.reliability}/5`}>
                         {Array.from({ length: 5 }).map((_, index) => (
                           <i className={index < source.reliability ? 'filled' : ''} key={index} />
                         ))}
@@ -436,7 +442,7 @@ function ResearchHub() {
             </div>
           </section>
 
-          <aside className="detail-panel" aria-label={`${selectedIdea.ticker} research detail`}>
+          <aside className="detail-panel" aria-label={`${selectedIdea.ticker} 研究详情`}>
             <div className="detail-head">
               <div>
                 <h2>{selectedIdea.ticker}</h2>
@@ -446,25 +452,25 @@ function ResearchHub() {
             </div>
 
             <div className="metric-row">
-              <span>Market Cap <strong>{selectedIdea.marketCap}</strong></span>
-              <span>Sector <strong>{selectedIdea.sector}</strong></span>
+              <span>市值 <strong>{selectedIdea.marketCap}</strong></span>
+              <span>板块 <strong>{selectedIdea.sector}</strong></span>
             </div>
 
             <div className="quick-stats">
               <div>
-                <span>Research Priority</span>
+                <span>研究优先级</span>
                 <strong>{priorityLabel[selectedIdea.priority]}</strong>
               </div>
               <div>
-                <span>Setup</span>
+                <span>判断</span>
                 <strong>{selectedIdea.setup}</strong>
               </div>
               <div>
-                <span>Timeframe</span>
+                <span>周期</span>
                 <strong>{selectedIdea.timeFrame}</strong>
               </div>
               <div>
-                <span>Conviction</span>
+                <span>信心</span>
                 <div className="dots">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <i className={index < selectedIdea.conviction ? 'filled' : ''} key={index} />
@@ -474,27 +480,27 @@ function ResearchHub() {
             </div>
 
             <section className="detail-block">
-              <h3><Target size={16} /> Why now</h3>
+              <h3><Target size={16} /> 为什么现在</h3>
               <p>{selectedIdea.whyNow}</p>
             </section>
 
             <section className="detail-block">
-              <h3><Sparkles size={16} /> Variant Wedge</h3>
+              <h3><Sparkles size={16} /> 估计差</h3>
               <p>{selectedIdea.variantWedge}</p>
             </section>
 
             <section className="detail-block">
-              <h3><BarChart3 size={16} /> What is priced in</h3>
+              <h3><BarChart3 size={16} /> 已经计价了什么</h3>
               <p>{selectedIdea.pricedIn}</p>
             </section>
 
             <section className="detail-block danger">
-              <h3>First Rejection</h3>
+              <h3>第一否决条件</h3>
               <p>{selectedIdea.firstRejection}</p>
             </section>
 
             <section className="detail-block">
-              <h3>Next Evidence</h3>
+              <h3>下一步证据</h3>
               <ul>
                 {selectedIdea.nextEvidence.map((item) => (
                   <li key={item}>{item}</li>
@@ -503,7 +509,7 @@ function ResearchHub() {
             </section>
 
             <div className="workflow">
-              <span>Next workflow</span>
+              <span>下一步工作流</span>
               <strong>{selectedIdea.workflow}</strong>
             </div>
 
@@ -530,7 +536,7 @@ function App() {
 
   return (
     <div className="report-redirect">
-      <a href="/equity_idea_triage_2026-07-06.html">Open equity idea triage report</a>
+      <a href="/equity_idea_triage_2026-07-06.html">打开股票机会初筛报告</a>
     </div>
   )
 }

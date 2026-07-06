@@ -1,12 +1,12 @@
-# Equity Research Hub
+# 股票研究台
 
-A small React/Vite frontend for publishing public-equity research reports and tracking follow-up ideas.
+一个自用的 React/Vite 股票研究前端，用来发布研究报告、跟踪观察池、催化和下一步证据。
 
-The first seeded workspace is based on a July 6, 2026 idea triage covering TSLA, SPCX, AMD, NVDA, AVGO, and RKLB.
+第一版基于 2026-07-06 的股票机会初筛，覆盖 TSLA、SPCX、AMD、NVDA、AVGO、RKLB。
 
-The production root redirects to the published report at `/equity_idea_triage_2026-07-06.html`. The interactive research workspace remains available at `/hub`.
+生产环境首页会进入 `/equity_idea_triage_2026-07-06.html` 这份报告；交互式研究台在 `/hub`。
 
-## Scripts
+## 命令
 
 ```bash
 npm install
@@ -15,6 +15,6 @@ npm run build
 npm run lint
 ```
 
-## Design
+## 设计
 
-The initial interface follows the product concept saved at `docs/design-concept.png`: a compact institutional research workspace with left navigation, a watchlist table, a right-side selected-idea panel, catalyst calendar, and source-quality register.
+初始界面参考 `docs/design-concept.png`：左侧导航、观察池表格、右侧单票研究面板、催化日历和来源质量记录。界面语言默认中文，因为这是自用研究系统。
