@@ -1,33 +1,36 @@
 :root {
-  --page: #f7f9fb;
+  --page: #ffffff;
   --surface: #ffffff;
-  --ink: #17202a;
-  --slate: #374151;
-  --muted: #647282;
-  --line: #dbe2ea;
-  --hover: #eef3f7;
-  --table-head: #f4f7fa;
-  --teal: #087c7a;
-  --teal-soft: #e8f5f4;
-  --teal-line: #a9d7d4;
-  --green: #217346;
-  --green-soft: #e9f4ed;
-  --gold: #9a6500;
-  --gold-soft: #fff3d8;
-  --red: #a33a37;
-  --red-soft: #fdebea;
-  --red-line: #efc2bf;
-  --font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --surface-subtle: #f7f8fa;
+  --surface-muted: #f1f3f5;
+  --ink: #101418;
+  --slate: #2d3640;
+  --muted: #66717d;
+  --faint: #8a949f;
+  --line: #d9dee4;
+  --line-strong: #c4cbd3;
+  --hover: #f3f6f8;
+  --active: #edf6f8;
+  --accent: #0c5f70;
+  --accent-strong: #084c5a;
+  --green: #137243;
+  --green-soft: #eaf4ef;
+  --gold: #9b6500;
+  --gold-soft: #fff5df;
+  --red: #a13a36;
+  --red-soft: #fff0ef;
+  --font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
 
   color: var(--slate);
   background: var(--page);
   font-family: var(--font);
-  font-size: 14px;
+  font-size: 13px;
   font-synthesis: none;
   line-height: 1.4;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
 }
 
 * {
@@ -43,15 +46,16 @@ body,
 body {
   margin: 0;
   min-width: 320px;
+  background: var(--page);
 }
 
 button,
 input {
-  font-family: inherit;
+  font: inherit;
 }
 
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }

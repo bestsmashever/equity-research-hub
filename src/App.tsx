@@ -1,18 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
-  BarChart3,
+  BookOpen,
   CalendarDays,
   CheckCircle2,
-  ClipboardList,
   Download,
   FileText,
-  Filter,
-  GitBranch,
-  LineChart,
+  Layers3,
   Plus,
   Search,
-  Sparkles,
-  Target,
+  Settings,
+  Table2,
 } from 'lucide-react'
 import './App.css'
 
@@ -203,17 +200,17 @@ const sources: SourceRow[] = [
 ]
 
 const navItems = [
-  { label: '观察池', icon: LineChart },
-  { label: '想法库', icon: Sparkles },
+  { label: '观察池', icon: Table2 },
   { label: '研究笔记', icon: FileText },
   { label: '催化日历', icon: CalendarDays },
-  { label: '来源', icon: ClipboardList },
+  { label: '来源', icon: BookOpen },
+  { label: '情景', icon: Layers3 },
 ]
 
 const priorityLabel: Record<Priority, string> = {
-  A: 'A - 立刻深挖',
-  B: 'B - 等触发',
-  C: 'C - 仅观察',
+  A: 'A 立刻深挖',
+  B: 'B 等触发',
+  C: 'C 仅观察',
 }
 
 function ResearchHub() {
@@ -263,21 +260,19 @@ function ResearchHub() {
   return (
     <div className="workspace">
       <aside className="sidebar" aria-label="研究导航">
-        <div className="brand">
-          <div className="brand-mark">
-            <LineChart size={19} />
-          </div>
-          <div>
-            <strong>股票研究台</strong>
-            <span>数据、笔记、估计差。</span>
-          </div>
-        </div>
+        <div className="brand-mark" aria-label="股票研究台">XR</div>
 
-        <nav className="nav-list">
+        <nav className="rail-nav">
           {navItems.map((item) => {
             const Icon = item.icon
+            const active = item.label === '观察池'
             return (
-              <button className={item.label === '观察池' ? 'nav-item active' : 'nav-item'} key={item.label}>
+              <button
+                aria-current={active ? 'page' : undefined}
+                className={active ? 'rail-item active' : 'rail-item'}
+                key={item.label}
+                title={item.label}
+              >
                 <Icon size={18} />
                 <span>{item.label}</span>
               </button>
@@ -285,50 +280,48 @@ function ResearchHub() {
           })}
         </nav>
 
-        <div className="sidebar-section">
-          <span className="sidebar-title">组合</span>
-          <button>核心多头 <strong>6</strong></button>
-          <button>高信心 <strong>3</strong></button>
-          <button>投机观察 <strong>7</strong></button>
-        </div>
-
-        <div className="sidebar-section">
-          <span className="sidebar-title">工具</span>
-          <button>筛选器</button>
-          <button>市场地图</button>
-          <button>情景实验室</button>
-        </div>
-
-        <div className="user-strip">
-          <div className="avatar">XR</div>
-          <div>
-            <strong>Xiaoran D.</strong>
-            <span>研究</span>
-          </div>
-        </div>
+        <button className="rail-settings" title="设置">
+          <Settings size={18} />
+          <span>设置</span>
+        </button>
       </aside>
 
       <div className="app-shell">
         <header className="topbar">
-          <div className="repo-meta">
-            <GitBranch size={18} />
-            <div>
-              <strong>股票研究台</strong>
-              <span>main / 今日更新</span>
+          <div className="title-lockup">
+            <strong>股票研究台</strong>
+            <span>US growth / AI / Space · 2026-07-06</span>
+          </div>
+
+          <div className="top-tabs" aria-label="优先级筛选">
+            {(['All', 'A', 'B', 'C'] as const).map((priority) => (
+              <button
+                className={priorityFilter === priority ? 'top-tab active' : 'top-tab'}
+                key={priority}
+                onClick={() => setPriorityFilter(priority)}
+              >
+                {priority === 'All' ? '全部' : priorityLabel[priority]}
+              </button>
+            ))}
+          </div>
+
+          <div className="top-actions">
+            <div className="search-box">
+              <Search size={15} />
+              <input
+                aria-label="搜索股票"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="搜索代码 / 名称 / 主题"
+              />
             </div>
-          </div>
-          <div className="deploy-card">
-            <span>Vercel</span>
-            <strong><CheckCircle2 size={14} /> 已部署</strong>
-          </div>
-          <div className="actions">
-            <button onClick={createNote}>
-              <Plus size={17} />
-              新笔记
-            </button>
-            <button onClick={exportSummary}>
-              <Download size={17} />
+            <button className="action-button" onClick={exportSummary}>
+              <Download size={15} />
               导出
+            </button>
+            <button className="action-button" onClick={createNote}>
+              <Plus size={15} />
+              新笔记
             </button>
           </div>
         </header>
@@ -338,30 +331,13 @@ function ResearchHub() {
             <div className="section-heading">
               <div>
                 <h1>观察池</h1>
-                <p>{filteredIdeas.length} 个标的 / 美股大盘成长、太空与 AI 相关机会</p>
+                <p>{filteredIdeas.length} 个标的 · 美股大盘成长、太空与 AI 相关机会</p>
               </div>
-              <div className="search-box">
-                <Search size={17} />
-                <input
-                  aria-label="搜索股票"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="搜索股票、公司、板块..."
-                />
+              <div className="status-line">
+                <span>main</span>
+                <CheckCircle2 size={14} />
+                <strong>已部署</strong>
               </div>
-            </div>
-
-            <div className="toolbar">
-              {(['All', 'A', 'B', 'C'] as const).map((priority) => (
-                <button
-                  className={priorityFilter === priority ? 'filter active' : 'filter'}
-                  key={priority}
-                  onClick={() => setPriorityFilter(priority)}
-                >
-                  <Filter size={14} />
-                  {priority === 'All' ? '全部优先级' : priorityLabel[priority]}
-                </button>
-              ))}
             </div>
 
             <div className="table-wrap">
@@ -387,9 +363,9 @@ function ResearchHub() {
                     >
                       <td><strong className="ticker">{idea.ticker}</strong></td>
                       <td>{idea.name}</td>
-                      <td>{idea.price}</td>
-                      <td className={idea.move.startsWith('+') ? 'positive' : ''}>{idea.move}</td>
-                      <td>{idea.marketCap}</td>
+                      <td className="numeric">{idea.price}</td>
+                      <td className={idea.move.startsWith('+') ? 'positive numeric' : 'numeric'}>{idea.move}</td>
+                      <td className="numeric">{idea.marketCap}</td>
                       <td><span className={`priority priority-${idea.priority}`}>{priorityLabel[idea.priority]}</span></td>
                       <td>{idea.setup}</td>
                       <td>{idea.nextEvidence[0]}</td>
@@ -402,8 +378,8 @@ function ResearchHub() {
             <div className="lower-grid">
               <section className="panel">
                 <div className="panel-title">
-                  <CalendarDays size={18} />
                   <h2>催化日历</h2>
+                  <span>近端监控</span>
                 </div>
                 <div className="mini-table">
                   {catalysts.map((item) => (
@@ -420,8 +396,8 @@ function ResearchHub() {
 
               <section className="panel">
                 <div className="panel-title">
-                  <ClipboardList size={18} />
-                  <h2>来源质量与笔记</h2>
+                  <h2>来源</h2>
+                  <span>证据质量</span>
                 </div>
                 <div className="source-list">
                   {sources.map((source) => (
@@ -443,63 +419,55 @@ function ResearchHub() {
           </section>
 
           <aside className="detail-panel" aria-label={`${selectedIdea.ticker} 研究详情`}>
-            <div className="detail-head">
+            <div className="memo-header">
               <div>
+                <span>研究笔记</span>
                 <h2>{selectedIdea.ticker}</h2>
-                <span>{selectedIdea.name}</span>
+                <p>{selectedIdea.name}</p>
               </div>
               <strong>{selectedIdea.price}</strong>
             </div>
 
-            <div className="metric-row">
-              <span>市值 <strong>{selectedIdea.marketCap}</strong></span>
-              <span>板块 <strong>{selectedIdea.sector}</strong></span>
-            </div>
-
-            <div className="quick-stats">
+            <div className="memo-kpis">
               <div>
-                <span>研究优先级</span>
-                <strong>{priorityLabel[selectedIdea.priority]}</strong>
+                <span>市值</span>
+                <strong>{selectedIdea.marketCap}</strong>
               </div>
               <div>
-                <span>判断</span>
-                <strong>{selectedIdea.setup}</strong>
+                <span>板块</span>
+                <strong>{selectedIdea.sector}</strong>
+              </div>
+              <div>
+                <span>优先级</span>
+                <strong>{priorityLabel[selectedIdea.priority]}</strong>
               </div>
               <div>
                 <span>周期</span>
                 <strong>{selectedIdea.timeFrame}</strong>
               </div>
-              <div>
-                <span>信心</span>
-                <div className="dots">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <i className={index < selectedIdea.conviction ? 'filled' : ''} key={index} />
-                  ))}
-                </div>
-              </div>
             </div>
 
-            <section className="detail-block">
-              <h3><Target size={16} /> 为什么现在</h3>
+            <section className="memo-section">
+              <h3>为什么现在</h3>
               <p>{selectedIdea.whyNow}</p>
             </section>
 
-            <section className="detail-block">
-              <h3><Sparkles size={16} /> 估计差</h3>
+            <section className="memo-section">
+              <h3>估计差</h3>
               <p>{selectedIdea.variantWedge}</p>
             </section>
 
-            <section className="detail-block">
-              <h3><BarChart3 size={16} /> 已经计价了什么</h3>
+            <section className="memo-section">
+              <h3>已经计价了什么</h3>
               <p>{selectedIdea.pricedIn}</p>
             </section>
 
-            <section className="detail-block danger">
+            <section className="memo-section rejection">
               <h3>第一否决条件</h3>
               <p>{selectedIdea.firstRejection}</p>
             </section>
 
-            <section className="detail-block">
+            <section className="memo-section">
               <h3>下一步证据</h3>
               <ul>
                 {selectedIdea.nextEvidence.map((item) => (
