@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   BookOpen,
   CalendarDays,
@@ -63,6 +63,8 @@ type ResearchFile = {
   meta: string
   status: string
 }
+
+type NavLabel = '观察池' | '研究笔记' | '催化日历' | '来源' | '情景'
 
 const ideas: Idea[] = [
   {
@@ -237,7 +239,7 @@ const researchFiles: ResearchFile[] = [
   },
 ]
 
-const navItems = [
+const navItems: Array<{ label: NavLabel; icon: typeof Table2 }> = [
   { label: '观察池', icon: Table2 },
   { label: '研究笔记', icon: FileText },
   { label: '催化日历', icon: CalendarDays },
@@ -256,6 +258,17 @@ function ResearchHub() {
   const [priorityFilter, setPriorityFilter] = useState<'All' | Priority>('All')
   const [query, setQuery] = useState('')
   const [activity, setActivity] = useState('研究台已就绪')
+  const [activeNav, setActiveNav] = useState<NavLabel>('观察池')
+  const [noteOpen, setNoteOpen] = useState(false)
+  const [draftNote, setDraftNote] = useState('')
+  const [compactMode, setCompactMode] = useState(false)
+
+  const watchlistRef = useRef<HTMLElement | null>(null)
+  const detailPanelRef = useRef<HTMLElement | null>(null)
+  const catalystRef = useRef<HTMLElement | null>(null)
+  const sourcesRef = useRef<HTMLElement | null>(null)
+  const thesisRef = useRef<HTMLElement | null>(null)
+  const noteEditorRef = useRef<HTMLTextAreaElement | null>(null)
 
   const filteredIdeas = useMemo(() => {
     return ideas.filter((idea) => {
@@ -278,6 +291,42 @@ function ResearchHub() {
 
   const selectedIdea = ideas.find((idea) => idea.ticker === selectedTicker) ?? ideas[0]
 
+  const scrollIntoView = (element: HTMLElement | null) => {
+    element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+  }
+
+  const handleNavClick = (label: NavLabel) => {
+    setActiveNav(label)
+
+    if (label === '观察池') {
+      scrollIntoView(watchlistRef.current)
+      setActivity('已切换到观察池')
+      return
+    }
+
+    if (label === '研究笔记') {
+      setNoteOpen(true)
+      setActivity(`已打开 ${selectedIdea.ticker} 研究笔记`)
+      window.setTimeout(() => noteEditorRef.current?.focus(), 100)
+      return
+    }
+
+    if (label === '催化日历') {
+      scrollIntoView(catalystRef.current)
+      setActivity('已定位到催化日历')
+      return
+    }
+
+    if (label === '来源') {
+      scrollIntoView(sourcesRef.current)
+      setActivity('已定位到资料与来源')
+      return
+    }
+
+    detailPanelRef.current?.scrollTo({ top: thesisRef.current?.offsetTop ?? 0, behavior: 'smooth' })
+    setActivity(`已定位到 ${selectedIdea.ticker} thesis / 情景判断`)
+  }
+
   const exportSummary = () => {
     const lines = [
       '股票研究台导出',
@@ -287,28 +336,54 @@ function ResearchHub() {
       `第一否决：${selectedIdea.firstRejection}`,
       `下一步证据：${selectedIdea.nextEvidence.join('、')}`,
     ]
-    void navigator.clipboard?.writeText(lines.join('\n')).catch(() => undefined)
-    setActivity(`已复制 ${selectedIdea.ticker} 研究摘要`)
+    const text = lines.join('\n')
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+
+    link.href = url
+    link.download = `${selectedIdea.ticker.toLowerCase()}-research-summary.txt`
+    link.style.display = 'none'
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(url), 0)
+
+    void navigator.clipboard?.writeText(text).catch(() => undefined)
+    setActivity(`已下载并复制 ${selectedIdea.ticker} 研究摘要`)
   }
 
   const createNote = () => {
-    setActivity(`已开始 ${selectedIdea.ticker} 研究笔记`)
+    setActiveNav('研究笔记')
+    setNoteOpen(true)
+    setDraftNote((currentNote) => (
+      currentNote ||
+      `${selectedIdea.ticker} 研究笔记\n\n待验证事项：\n- ${selectedIdea.nextEvidence.join('\n- ')}\n\n初步判断：\n`
+    ))
+    setActivity(`已打开 ${selectedIdea.ticker} 研究笔记编辑区`)
+    window.setTimeout(() => noteEditorRef.current?.focus(), 100)
+  }
+
+  const toggleCompactMode = () => {
+    setCompactMode((currentMode) => !currentMode)
+    setActivity(compactMode ? '已切回标准密度' : '已切换到精简密度')
   }
 
   return (
-    <div className="workspace">
+    <div className={compactMode ? 'workspace compact' : 'workspace'}>
       <aside className="sidebar" aria-label="研究导航">
         <div className="brand-mark" aria-label="股票研究台">XR</div>
 
         <nav className="rail-nav">
           {navItems.map((item) => {
             const Icon = item.icon
-            const active = item.label === '观察池'
+            const active = item.label === activeNav
             return (
               <button
                 aria-current={active ? 'page' : undefined}
                 className={active ? 'rail-item active' : 'rail-item'}
                 key={item.label}
+                onClick={() => handleNavClick(item.label)}
                 title={item.label}
               >
                 <Icon size={18} />
@@ -318,9 +393,9 @@ function ResearchHub() {
           })}
         </nav>
 
-        <button className="rail-settings" title="设置">
+        <button className="rail-settings" onClick={toggleCompactMode} title="切换密度">
           <Settings size={18} />
-          <span>设置</span>
+          <span>{compactMode ? '标准' : '精简'}</span>
         </button>
       </aside>
 
@@ -365,7 +440,7 @@ function ResearchHub() {
         </header>
 
         <main className="main-grid">
-          <section className="watchlist">
+          <section className="watchlist" ref={watchlistRef}>
             <div className="section-heading">
               <div>
                 <h1>统一研究入口</h1>
@@ -414,7 +489,7 @@ function ResearchHub() {
             </div>
 
             <div className="lower-grid">
-              <section className="panel">
+              <section className="panel" ref={catalystRef}>
                 <div className="panel-title">
                   <h2>催化日历</h2>
                   <span>近端监控</span>
@@ -432,7 +507,7 @@ function ResearchHub() {
                 </div>
               </section>
 
-              <section className="panel">
+              <section className="panel" ref={sourcesRef}>
                 <div className="panel-title">
                   <h2>资料与来源</h2>
                   <span>文件 / 证据质量</span>
@@ -465,7 +540,25 @@ function ResearchHub() {
             </div>
           </section>
 
-          <aside className="detail-panel" aria-label={`${selectedIdea.ticker} 研究详情`}>
+          <aside className="detail-panel" ref={detailPanelRef} aria-label={`${selectedIdea.ticker} 研究详情`}>
+            {noteOpen ? (
+              <section className="note-editor">
+                <div className="note-editor-title">
+                  <div>
+                    <span>研究笔记</span>
+                    <strong>{selectedIdea.ticker} 草稿</strong>
+                  </div>
+                  <button onClick={() => setNoteOpen(false)}>收起</button>
+                </div>
+                <textarea
+                  ref={noteEditorRef}
+                  value={draftNote}
+                  onChange={(event) => setDraftNote(event.target.value)}
+                  placeholder="记录下一步验证、模型问题或电话会问题"
+                />
+              </section>
+            ) : null}
+
             <div className="memo-header">
               <div>
                 <span>研究笔记</span>
@@ -494,7 +587,7 @@ function ResearchHub() {
               </div>
             </div>
 
-            <section className="memo-section">
+            <section className="memo-section" ref={thesisRef}>
               <h3>为什么现在</h3>
               <p>{selectedIdea.whyNow}</p>
             </section>

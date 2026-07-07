@@ -5,6 +5,26 @@
   background: var(--page);
 }
 
+.workspace.compact .watchlist,
+.workspace.compact .detail-panel {
+  padding: 10px;
+}
+
+.workspace.compact th,
+.workspace.compact td,
+.workspace.compact .mini-row,
+.workspace.compact .source-row {
+  padding-block: 6px;
+}
+
+.workspace.compact .memo-section,
+.workspace.compact .memo-header,
+.workspace.compact .workflow,
+.workspace.compact .activity {
+  margin-top: 8px;
+  padding: 9px 10px;
+}
+
 .sidebar {
   min-height: 100vh;
   border-right: 1px solid var(--line);
@@ -559,10 +579,70 @@ mark {
 .memo-kpis,
 .memo-section,
 .workflow,
-.activity {
+.activity,
+.note-editor {
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--surface);
+}
+
+.note-editor {
+  padding: 12px;
+}
+
+.note-editor-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.note-editor-title span,
+.note-editor-title strong {
+  display: block;
+}
+
+.note-editor-title span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.note-editor-title strong {
+  color: var(--ink);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.note-editor-title button {
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-subtle);
+  color: var(--slate);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 650;
+  padding: 0 9px;
+}
+
+.note-editor-title button:hover {
+  border-color: var(--line-strong);
+  background: var(--hover);
+}
+
+.note-editor textarea {
+  width: 100%;
+  min-height: 168px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px;
 }
 
 .memo-header {
