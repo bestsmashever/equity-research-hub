@@ -1,32 +1,35 @@
 :root {
-  --page: #ffffff;
-  --surface: #ffffff;
-  --surface-subtle: #f7f8fa;
-  --surface-muted: #f1f3f5;
-  --ink: #101418;
-  --slate: #2d3640;
-  --muted: #66717d;
-  --faint: #8a949f;
-  --line: #d9dee4;
-  --line-strong: #c4cbd3;
-  --hover: #f3f6f8;
-  --active: #edf6f8;
-  --accent: #0c5f70;
-  --accent-strong: #084c5a;
-  --green: #137243;
-  --green-soft: #eaf4ef;
-  --gold: #9b6500;
-  --gold-soft: #fff5df;
-  --red: #a13a36;
-  --red-soft: #fff0ef;
-  --font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --white: #ffffff;
+  --canvas: #ffffff;
+  --surface-subtle: #f8fafc;
+  --surface-blue: #f2f6ff;
+  --ink: #111318;
+  --slate: #303640;
+  --muted: #66707c;
+  --faint: #8d96a2;
+  --line: #d9dee7;
+  --line-strong: #c4ccd7;
+  --blue: #1454d8;
+  --blue-dark: #0a43b2;
+  --blue-soft: #edf3ff;
+  --green: #087f50;
+  --green-dark: #05643f;
+  --green-soft: #edf8f2;
+  --amber: #dd8d00;
+  --amber-dark: #9e6200;
+  --amber-soft: #fff7e8;
+  --red: #d7192d;
+  --red-dark: #aa1122;
+  --red-soft: #fff1f2;
+  --shadow-popover: 0 12px 32px rgba(23, 35, 54, 0.14);
+  --font-ui: Inter, Geist, -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
 
   color: var(--slate);
-  background: var(--page);
-  font-family: var(--font);
-  font-size: 13px;
+  background: var(--canvas);
+  font-family: var(--font-ui);
+  font-size: 14px;
   font-synthesis: none;
-  line-height: 1.4;
+  line-height: 1.45;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,25 +40,61 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #root {
+  min-width: 320px;
   min-height: 100%;
+  margin: 0;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
-  background: var(--page);
+  background: var(--canvas);
+  overflow: hidden;
 }
 
 button,
-input {
+input,
+textarea {
+  color: inherit;
   font: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--accent);
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
+}
+
+::selection {
+  color: var(--ink);
+  background: #cfe0ff;
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
