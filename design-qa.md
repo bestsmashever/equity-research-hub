@@ -53,3 +53,16 @@
 - `npm run lint`：通过
 - `npm run build`：通过（Vite 8.1.3，1789 modules transformed）
 - 最终验收状态：`passed`
+
+## 2026-07-15 — GOOGL / RIVN 扩展回归
+
+最终结果：`passed`
+
+- 权威桌面设计稿仍为 `/Users/xiaorandong/.codex/generated_images/019f62c1-f16c-78a3-803b-1485f02f2126/exec-0926b23e-3187-40ec-ad9e-25a2b581d604.png`。
+- 最新桌面截图：`/Users/xiaorandong/.codex/visualizations/2026/07/15/stock-research-rivn-googl-desktop-final.png`（1487 × 1058）。
+- 最新移动截图：`/Users/xiaorandong/.codex/visualizations/2026/07/15/stock-research-rivn-googl-mobile-final.png`（375 × 844 可见内容，浏览器视口 390 × 844）。
+- 截图由 Codex in-app Browser 原生 tab screenshot 完成；设计稿与最新实现均通过 `view_image` 原始分辨率复核。
+
+回归核对点：页面骨架、白底冷灰与蓝色强调、3 × 3 图谱、表格/检查器层级、催化剂轨道和移动单列结构均保持方案 2；新增 GOOGL / RIVN 节点与标签无重叠；9 张催化剂卡在桌面无横向溢出；移动文档宽 375px，小于 390px 视口；桌面文档与 1487 × 1058 视口完全一致。首屏只增加已核验的两家公司标签和研究计数，没有新增未批准的标题、导航或装饰性文案。
+
+交互回归：GOOGL 节点正确打开 2026-07-15 研究详情；RIVN 节点及“风险”页签正确切换；来源日期随公司 `asOf` 展示；浏览器 console 无 warning/error。为避免 GOOGL 与 AVGO 标签碰撞，保持相同矩阵语义的前提下微调了两者纵轴位置；无其他有意视觉偏离。

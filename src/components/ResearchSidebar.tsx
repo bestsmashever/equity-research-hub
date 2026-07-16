@@ -69,7 +69,7 @@ export function ResearchSidebar({ activeView, onViewChange, onCreateNote }: Rese
         <div className="sidebar-disclaimer">
           <p>本页面为研究层展示，结论基于公开信息与研究假设。</p>
           <strong>不构成投资建议。</strong>
-          <span>数据截至 2026-07-14 收盘</span>
+          <span>最新研究截至 2026-07-15 收盘</span>
         </div>
       </aside>
 

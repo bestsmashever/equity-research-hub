@@ -55,7 +55,7 @@ function SourceList({ company }: { company: CompanyResearch }) {
             <span>{index + 1}</span>
             <div>
               <strong>{source.title}</strong>
-              <small>{source.publisher} · 核于 2026-07-14</small>
+              <small>{source.publisher} · 核于 {company.asOf}</small>
             </div>
             <ExternalLink size={14} />
           </a>
@@ -188,7 +188,7 @@ function ValuationTab({ company }: { company: CompanyResearch }) {
       </section>
       <section className="inspector-section inference-note">
         <strong>研究口径</strong>
-        <p>估值段落属于研究推断；价格、P/E 与市值为 2026-07-14 市场快照，不是公司披露数据。</p>
+        <p>估值段落属于研究推断；价格、P/E 与市值为 {company.asOf} 市场快照，不是公司披露数据。</p>
       </section>
       <SourceList company={company} />
     </>
@@ -332,7 +332,7 @@ export function ResearchInspector({
       </div>
 
       <div className="inspector-footer">
-        <span>更新：2026-07-14 · 研究层 A</span>
+        <span>更新：{company.asOf} · 研究层 A</span>
         <button type="button" onClick={onOpenNote}>
           <FilePlus2 size={15} />
           加入笔记

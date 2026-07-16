@@ -1,4 +1,4 @@
-export type Ticker = 'NVDA' | 'AVGO' | 'AMD' | 'TSLA' | 'SPCX' | 'RKLB'
+export type Ticker = 'NVDA' | 'GOOGL' | 'AVGO' | 'AMD' | 'TSLA' | 'RIVN' | 'SPCX' | 'RKLB'
 
 export type ResearchDepth = 'deep' | 'watch' | 'unproven'
 export type ProofStage = 'unproven' | 'emerging' | 'scaled'
