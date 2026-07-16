@@ -1,5 +1,5 @@
-import { CalendarDays, Rocket } from 'lucide-react'
-import { SiAmd, SiBroadcom, SiNvidia, SiSpacex, SiTesla } from 'react-icons/si'
+import { CalendarDays, CarFront, Rocket } from 'lucide-react'
+import { SiAmd, SiBroadcom, SiGoogle, SiNvidia, SiSpacex, SiTesla } from 'react-icons/si'
 import { catalysts } from '../data/research'
 import type { Ticker } from '../types/research'
 
@@ -15,6 +15,8 @@ function CompanyMark({ ticker }: { ticker: Ticker }) {
   if (ticker === 'NVDA') return <SiNvidia size={25} aria-hidden="true" />
   if (ticker === 'AVGO') return <SiBroadcom size={24} aria-hidden="true" />
   if (ticker === 'SPCX') return <SiSpacex size={30} aria-hidden="true" />
+  if (ticker === 'GOOGL') return <SiGoogle size={24} aria-hidden="true" />
+  if (ticker === 'RIVN') return <CarFront size={24} aria-hidden="true" />
   return <Rocket size={24} aria-hidden="true" />
 }
 

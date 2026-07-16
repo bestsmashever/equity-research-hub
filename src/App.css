@@ -815,7 +815,7 @@ button { border: 0; }
 .catalyst-cards {
   min-width: 0;
   display: grid;
-  grid-template-columns: repeat(7, minmax(130px, 1fr));
+  grid-template-columns: repeat(9, minmax(120px, 1fr));
   gap: 8px;
   margin-top: 7px;
 }
@@ -843,6 +843,8 @@ button { border: 0; }
 .brand-AVGO .catalyst-brand,
 .brand-RKLB .catalyst-brand { color: #d3122a; }
 .brand-NVDA .catalyst-brand { color: #6aa600; }
+.brand-GOOGL .catalyst-brand { color: #4285f4; }
+.brand-RIVN .catalyst-brand { color: #0f766e; }
 .brand-SPCX .catalyst-brand { color: #58626f; }
 
 .catalyst-copy { min-width: 0; display: grid; }
@@ -937,7 +939,7 @@ button { border: 0; }
   .sidebar-item.active { border-bottom-color: var(--blue); }
   .primary-nav-item { min-width: 92px; }
   .research-search { width: 210px; }
-  .catalyst-cards { overflow-x: auto; grid-template-columns: repeat(7, minmax(165px, 1fr)); padding-bottom: 4px; }
+  .catalyst-cards { overflow-x: auto; grid-template-columns: repeat(9, minmax(165px, 1fr)); padding-bottom: 4px; }
 }
 
 @media (max-width: 1080px) {

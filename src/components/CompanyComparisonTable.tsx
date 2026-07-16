@@ -14,7 +14,7 @@ export function CompanyComparisonTable({ companies, selectedTicker, onSelect }: 
     <section className="comparison-panel" id="company-comparison" aria-labelledby="comparison-title">
       <div className="comparison-title-row">
         <h2 id="comparison-title">公司对比 <span>（按变现证据强度排序）</span></h2>
-        <small>价格截至 2026-07-14 收盘</small>
+        <small>各公司价格日期见详情</small>
       </div>
       <div className="comparison-table-wrap">
         <table className="comparison-table">
